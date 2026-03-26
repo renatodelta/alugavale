@@ -544,4 +544,16 @@ footer {
     .hero h1 { font-size: 2.25rem; }
     .form-wrapper { padding: 32px 24px; }
     .benefits-grid { grid-template-columns: 1fr; }
+    
+    .btn-nav-whatsapp {
+        padding: 8px 14px !important;
+        font-size: 0.85rem !important;
+    }
+    .btn-nav-whatsapp .icon-whatsapp {
+        width: 18px;
+        height: 18px;
+    }
+}
+.btn-nav-whatsapp .icon-whatsapp {
+    color: #25D366; /* Official WhatsApp Green */
 }
