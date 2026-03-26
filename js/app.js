@@ -1,5 +1,5 @@
 // Configure the agent's WhatsApp number here (include country code 55 + DDD + number)
-const WHATSAPP_NUMBER = "5512999999999";
+const WHATSAPP_NUMBER = "5512992400019";
 
 const app = {
     // Data objects to store user input
@@ -43,12 +43,12 @@ const app = {
     selectOption(element, field, value) {
         // Deselect siblings
         const siblings = element.parentElement.children;
-        for(let el of siblings) {
+        for (let el of siblings) {
             el.classList.remove('selected');
         }
         // Select current
         element.classList.add('selected');
-        
+
         // Save state
         this.tenantData[field] = value;
     },
@@ -62,7 +62,7 @@ const app = {
 
     nextStep(flowType, stepNumber) {
         // Simple validation for step 1
-        if(stepNumber === 2 && (!this.tenantData.cidade || !this.tenantData.tipo)) {
+        if (stepNumber === 2 && (!this.tenantData.cidade || !this.tenantData.tipo)) {
             alert("Por favor, selecione cidade e tipo de imóvel para continuar.");
             return;
         }
@@ -78,10 +78,10 @@ const app = {
         // Hide all steps
         const steps = document.querySelectorAll(`#${flowType}-wizard .step`);
         steps.forEach(s => s.classList.remove('active'));
-        
+
         // Show target step
         document.querySelector(`#${flowType}-wizard .step[data-step="${stepNumber}"]`).classList.add('active');
-        
+
         // Update progress bar
         const progressVal = (stepNumber / steps.length) * 100;
         document.getElementById('tenant-progress').style.width = `${progressVal}%`;
@@ -91,8 +91,8 @@ const app = {
         // Get step 3 explicit values
         const rendaSelect = document.getElementById('renda-familiar');
         this.tenantData.renda = rendaSelect.value;
-        
-        if(!this.tenantData.restricao) {
+
+        if (!this.tenantData.restricao) {
             alert("Por favor, informe se possui restrição no nome.");
             return;
         }
@@ -129,7 +129,7 @@ Podemos ver algumas opções?`;
         const tipo = document.getElementById('owner-type').value;
         const bairro = document.getElementById('owner-bairro').value;
 
-        if(!nome || !bairro) {
+        if (!nome || !bairro) {
             alert("Por favor, preencha nome e bairro para solicitar a avaliação.");
             return;
         }
