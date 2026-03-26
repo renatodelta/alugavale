@@ -111,11 +111,12 @@ const app = {
 
     // --- WhatsApp Generation ---
     sendTenantWhatsApp() {
+        // Using Unicode escapes to prevent any Windows encoding bugs: \u{1F3E2} = 🏢, \u{1F4B0} = 💰, \u{1F4B5} = 💵, \u{1F4DD} = 📝
         const text = "Olá! Tenho interesse em alugar um imóvel. Fiz a pré-análise no site:\n\n" +
-            "- *Busco:* " + this.tenantData.tipo + " em " + this.tenantData.cidade + "\n" +
-            "- *Valor Máximo:* R$ " + this.tenantData.valor + "\n" +
-            "- *Renda Familiar:* " + this.tenantData.renda + "\n" +
-            "- *Restrição (SPC):* " + this.tenantData.restricao + "\n\n" +
+            "\u{1F3E2} *Busco:* " + this.tenantData.tipo + " em " + this.tenantData.cidade + "\n" +
+            "\u{1F4B0} *Valor Máximo:* R$ " + this.tenantData.valor + "\n" +
+            "\u{1F4B5} *Renda Familiar:* " + this.tenantData.renda + "\n" +
+            "\u{1F4DD} *Restrição (SPC):* " + this.tenantData.restricao + "\n\n" +
             "Podemos ver algumas opções?";
 
         const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
@@ -132,9 +133,10 @@ const app = {
             return;
         }
 
+        // Using Unicode escapes: \u{1F3E0} = 🏠, \u{1F4CD} = 📍
         const text = "Olá, meu nome é " + nome + ". Gostaria de solicitar uma *Avaliação Gratuita* para locação do meu imóvel.\n\n" +
-            "- *Imóvel:* " + tipo + "\n" +
-            "- *Bairro:* " + bairro + "\n\n" +
+            "\u{1F3E0} *Imóvel:* " + tipo + "\n" +
+            "\u{1F4CD} *Bairro:* " + bairro + "\n\n" +
             "Como podemos seguir?";
 
         const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
