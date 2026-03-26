@@ -541,17 +541,43 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .hero h1 { font-size: 2.25rem; }
+    .hero h1 { font-size: 1.875rem; }
+    .hero .subtitle { font-size: 1rem; margin-bottom: 32px; }
     .form-wrapper { padding: 32px 24px; }
     .benefits-grid { grid-template-columns: 1fr; }
     
+    /* Navbar Adjustments */
+    .logo {
+        font-size: 1.25rem;
+        gap: 4px;
+    }
+    .logo img {
+        width: 26px !important;
+        height: 26px !important;
+    }
+    
+    /* Mobile WhatsApp Button */
     .btn-nav-whatsapp {
-        padding: 8px 14px !important;
-        font-size: 0.85rem !important;
+        padding: 0 !important;
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        border-radius: 50% !important;
+        background-color: #25D366 !important;
+        border-color: #25D366 !important;
+        color: white !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .btn-nav-whatsapp .btn-text {
+        display: none !important; /* Hide long text to save space */
     }
     .btn-nav-whatsapp .icon-whatsapp {
-        width: 18px;
-        height: 18px;
+        width: 24px !important;
+        height: 24px !important;
+        margin: 0 !important;
+        color: white !important;
     }
 }
 .btn-nav-whatsapp .icon-whatsapp {
