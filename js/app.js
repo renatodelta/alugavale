@@ -111,14 +111,12 @@ const app = {
 
     // --- WhatsApp Generation ---
     sendTenantWhatsApp() {
-        const text = `Olá! Tenho interesse em alugar um imóvel. Fiz a pré-análise no site:
-        
-🏢 *Busco:* ${this.tenantData.tipo} em ${this.tenantData.cidade}
-💰 *Valor Máximo:* R$ ${this.tenantData.valor}
-💵 *Renda Familiar:* ${this.tenantData.renda}
-📝 *Restrição (SPC):* ${this.tenantData.restricao}
-
-Podemos ver algumas opções?`;
+        const text = "Olá! Tenho interesse em alugar um imóvel. Fiz a pré-análise no site:\n\n" +
+            "- *Busco:* " + this.tenantData.tipo + " em " + this.tenantData.cidade + "\n" +
+            "- *Valor Máximo:* R$ " + this.tenantData.valor + "\n" +
+            "- *Renda Familiar:* " + this.tenantData.renda + "\n" +
+            "- *Restrição (SPC):* " + this.tenantData.restricao + "\n\n" +
+            "Podemos ver algumas opções?";
 
         const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
         window.open(url, '_blank');
@@ -134,12 +132,10 @@ Podemos ver algumas opções?`;
             return;
         }
 
-        const text = `Olá, meu nome é ${nome}. Gostaria de solicitar uma *Avaliação Gratuita* para locação do meu imóvel.
-        
-🏠 *Imóvel:* ${tipo}
-📍 *Bairro:* ${bairro}
-        
-Como podemos seguir?`;
+        const text = "Olá, meu nome é " + nome + ". Gostaria de solicitar uma *Avaliação Gratuita* para locação do meu imóvel.\n\n" +
+            "- *Imóvel:* " + tipo + "\n" +
+            "- *Bairro:* " + bairro + "\n\n" +
+            "Como podemos seguir?";
 
         const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
         window.open(url, '_blank');
