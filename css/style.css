@@ -71,7 +71,7 @@ h1, h2, h3, h4, h5, h6 {
 /* =========================================
    Buttons & Inputs
    ========================================= */
-button, .btn {
+button, .btn, [class*="btn-"] {
     font-family: var(--font-body);
     font-weight: 600;
     border: none;
@@ -84,6 +84,7 @@ button, .btn {
     justify-content: center;
     gap: 8px;
     font-size: 1rem;
+    text-decoration: none;
 }
 
 .btn-primary {
