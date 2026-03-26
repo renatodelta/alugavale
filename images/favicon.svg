@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <!-- The "A" / Roof representing "Aluga" -->
+    <path d="M 20 80 L 50 20 L 80 80" fill="none" stroke="#0F172A" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- The "V" / Valley representing "Vale" -->
+    <path d="M 33 42 L 50 67 L 67 42" fill="none" stroke="#10B981" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
