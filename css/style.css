@@ -182,7 +182,8 @@ h1, h2, h3, h4 {
    ========================================= */
 .trust-block { padding: 100px 0; background: var(--bg-gray); }
 .trust-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 80px; align-items: center; }
-.trust-image img { width: 100%; border-radius: var(--radius-lg); box-shadow: var(--shadow-premium); }
+.trust-image { width: 100%; max-width: 500px; margin: 0 auto; display: flex; justify-content: center; }
+.trust-image img { width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-premium); object-fit: cover; }
 .trust-content h2 { font-size: 2.5rem; margin-bottom: 24px; }
 .trust-content p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 40px; }
 .btn-whatsapp-large { background: #25D366; color: white; padding: 20px 40px; border-radius: var(--radius-md); text-decoration: none; display: inline-flex; align-items: center; gap: 15px; font-weight: 700; font-size: 1.25rem; transition: var(--transition); }
@@ -231,8 +232,8 @@ h1, h2, h3, h4 {
     .search-field { min-width: 45%; }
     .comparator-ui { flex-direction: column; }
     .comp-col { width: 100%; max-width: 500px; }
-    .trust-layout, .capture-card, .footer-grid { grid-template-columns: 1fr; }
-    .trust-image { max-width: 400px; margin: 0 auto; }
+    .trust-layout, .capture-card, .footer-grid { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+    .trust-image { margin: 0 auto 40px; }
     .floating-stat { left: 10px; bottom: 10px; }
 }
 
