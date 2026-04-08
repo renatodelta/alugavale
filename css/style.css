@@ -39,12 +39,17 @@
     -webkit-font-smoothing: antialiased;
 }
 
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-white);
     color: var(--text-main);
     line-height: 1.6;
-    overflow-x: hidden;
 }
 
 h1, h2, h3, h4 {
@@ -228,6 +233,7 @@ h1, h2, h3, h4 {
     .comp-col { width: 100%; max-width: 500px; }
     .trust-layout, .capture-card, .footer-grid { grid-template-columns: 1fr; }
     .trust-image { max-width: 400px; margin: 0 auto; }
+    .floating-stat { left: 10px; bottom: 10px; }
 }
 
 @media (max-width: 640px) {
