@@ -2,18 +2,18 @@
    Design System & Luxury Variables
    ========================================= */
 :root {
-    /* Sophisticated Fintech Palette */
-    --primary: #0F172A;      /* Deep Navy */
-    --primary-light: #1E293B;
-    --accent: #10B981;      /* Emerald Green */
-    --accent-hover: #059669;
-    --cta-orange: #F97316;  /* Vibrant Orange */
-    --bg-white: #FFFFFF;
-    --bg-gray: #F8FAFC;     /* Light Base */
-    --border: #E2E8F0;
+    /* High-End Warm Gray & Terracotta Palette */
+    --primary: #44403C;      /* Warm Earth */
+    --primary-light: #57534E;
+    --accent: #C2410C;      /* Tuscan Clay */
+    --accent-hover: #9A3412;
+    --cta-orange: #C2410C;  /* Consistent with Terracotta */
+    --bg-white: #F5F5F4;     /* Sandstone */
+    --bg-gray: #E7E5E4; 
+    --border: #D6D3D1;
     
-    --text-main: #1E293B;
-    --text-muted: #64748B;
+    --text-main: #292524;
+    --text-muted: #78716C;
     
     /* UX / Effects */
     --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
