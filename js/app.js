@@ -1,151 +1,109 @@
-// Configure the agent's WhatsApp number here (include country code 55 + DDD + number)
+// Configure the agent's WhatsApp number
 const WHATSAPP_NUMBER = "5512992400019";
 
 const app = {
-    // Data objects to store user input
-    tenantData: {
-        cidade: '',
-        tipo: '',
-        valor: 1500,
-        renda: '',
-        restricao: ''
-    },
-    ownerData: {
-        nome: '',
-        tipo: 'Casa',
-        bairro: ''
+    init() {
+        this.setupAnimations();
+        this.setupEventListeners();
+        this.setupNavigation();
     },
 
-    // UI State Management
-    showHero() {
-        document.getElementById('hero-section').classList.remove('hidden');
-        document.getElementById('flow-inquilino').classList.add('hidden');
-        document.getElementById('flow-proprietario').classList.add('hidden');
-        window.scrollTo(0, 0);
+    setupAnimations() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Elements to animate
+        const animateElements = document.querySelectorAll(
+            '.hero-text-content, .hero-visual, .search-bar, .decision-card, .comp-col, .article-card, .trust-image, .trust-content, .capture-card'
+        );
+
+        animateElements.forEach(el => {
+            el.classList.add('fade-in-up');
+            observer.observe(el);
+        });
+
+        // Add CSS for animations dynamically if not in style.css
+        const style = document.createElement('style');
+        style.textContent = `
+            .fade-in-up {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .fade-in-up.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .decision-card:nth-child(2) { transition-delay: 0.1s; }
+            .decision-card:nth-child(3) { transition-delay: 0.2s; }
+            .article-card:nth-child(2) { transition-delay: 0.1s; }
+            .article-card:nth-child(3) { transition-delay: 0.2s; }
+        `;
+        document.head.appendChild(style);
     },
 
-    showTenantFlow() {
-        document.getElementById('hero-section').classList.add('hidden');
-        document.getElementById('flow-inquilino').classList.remove('hidden');
-        document.getElementById('flow-proprietario').classList.add('hidden');
-        this.resetTenantForm();
-        window.scrollTo(0, 0);
-    },
-
-    showOwnerFlow() {
-        document.getElementById('hero-section').classList.add('hidden');
-        document.getElementById('flow-inquilino').classList.add('hidden');
-        document.getElementById('flow-proprietario').classList.remove('hidden');
-        window.scrollTo(0, 0);
-    },
-
-    // --- Tenant Flow (Wizard) Logic ---
-    selectOption(element, field, value) {
-        // Deselect siblings
-        const siblings = element.parentElement.children;
-        for (let el of siblings) {
-            el.classList.remove('selected');
-        }
-        // Select current
-        element.classList.add('selected');
-
-        // Save state
-        this.tenantData[field] = value;
-    },
-
-    updateRentValue(val) {
-        this.tenantData.valor = val;
-        // Format as currency loosely
-        const formatted = parseInt(val).toLocaleString('pt-BR');
-        document.getElementById('rent-value-display').innerText = formatted;
-    },
-
-    nextStep(flowType, stepNumber) {
-        // Simple validation for step 1
-        if (stepNumber === 2 && (!this.tenantData.cidade || !this.tenantData.tipo)) {
-            alert("Por favor, selecione cidade e tipo de imóvel para continuar.");
-            return;
-        }
-
-        this.goToStep(flowType, stepNumber);
-    },
-
-    prevStep(flowType, stepNumber) {
-        this.goToStep(flowType, stepNumber);
-    },
-
-    goToStep(flowType, stepNumber) {
-        // Hide all steps
-        const steps = document.querySelectorAll(`#${flowType}-wizard .step`);
-        steps.forEach(s => s.classList.remove('active'));
-
-        // Show target step
-        document.querySelector(`#${flowType}-wizard .step[data-step="${stepNumber}"]`).classList.add('active');
-
-        // Update progress bar
-        const progressVal = (stepNumber / steps.length) * 100;
-        document.getElementById('tenant-progress').style.width = `${progressVal}%`;
-    },
-
-    finishTenantFlow() {
-        // Get step 3 explicit values
-        const rendaSelect = document.getElementById('renda-familiar');
-        this.tenantData.renda = rendaSelect.value;
-
-        if (!this.tenantData.restricao) {
-            alert("Por favor, informe se possui restrição no nome.");
-            return;
+    setupEventListeners() {
+        // Lead Capture Form
+        const captureForm = document.querySelector('.capture-form');
+        if (captureForm) {
+            captureForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = captureForm.querySelector('input[type="text"]').value;
+                const whatsapp = captureForm.querySelector('input[type="tel"]').value;
+                
+                const text = `Olá Fabiana! Gostaria de uma *Avaliação de Aluguel* para meu imóvel. \n\n*Nome:* ${name}\n*WA:* ${whatsapp}`;
+                const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+                window.open(url, '_blank');
+            });
         }
 
-        // Show result step (step 4)
-        this.goToStep('tenant', 4);
-    },
+        // Category Filtering (Mock)
+        const catButtons = document.querySelectorAll('.portal-categories button');
+        catButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                catButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                // Real filtering would go here
+                console.log(`Filtering by: ${btn.textContent}`);
+            });
+        });
 
-    resetTenantForm() {
-        this.tenantData = { cidade: '', tipo: '', valor: 1500, renda: '', restricao: '' };
-        document.getElementById('rent-value').value = 1500;
-        document.getElementById('rent-value-display').innerText = "1.500";
-        document.querySelectorAll('.option-box').forEach(el => el.classList.remove('selected'));
-        this.goToStep('tenant', 1);
-    },
-
-    // --- WhatsApp Generation ---
-    sendTenantWhatsApp() {
-        // Using Unicode escapes to prevent any Windows encoding bugs: \u{1F3E2} = 🏢, \u{1F4B0} = 💰, \u{1F4B5} = 💵, \u{1F4DD} = 📝
-        const text = "Olá! Tenho interesse em alugar um imóvel. Fiz a pré-análise no site:\n\n" +
-            "\u{1F3E2} *Busco:* " + this.tenantData.tipo + " em " + this.tenantData.cidade + "\n" +
-            "\u{1F4B0} *Valor Máximo:* R$ " + this.tenantData.valor + "\n" +
-            "\u{1F4B5} *Renda Familiar:* " + this.tenantData.renda + "\n" +
-            "\u{1F4DD} *Restrição (SPC):* " + this.tenantData.restricao + "\n\n" +
-            "Podemos ver algumas opções?";
-
-        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-        window.open(url, '_blank');
-    },
-
-    sendOwnerWhatsApp() {
-        const nome = document.getElementById('owner-name').value;
-        const tipo = document.getElementById('owner-type').value;
-        const bairro = document.getElementById('owner-bairro').value;
-
-        if (!nome || !bairro) {
-            alert("Por favor, preencha nome e bairro para solicitar a avaliação.");
-            return;
+        // Search Button (Mock)
+        const btnSearch = document.querySelector('.btn-search');
+        if (btnSearch) {
+            btnSearch.addEventListener('click', () => {
+                alert('Iniciando busca inteligente... (Simulação)');
+            });
         }
+    },
 
-        // Using Unicode escapes: \u{1F3E0} = 🏠, \u{1F4CD} = 📍
-        const text = "Olá, meu nome é " + nome + ". Gostaria de solicitar uma *Avaliação Gratuita* para locação do meu imóvel.\n\n" +
-            "\u{1F3E0} *Imóvel:* " + tipo + "\n" +
-            "\u{1F4CD} *Bairro:* " + bairro + "\n\n" +
-            "Como podemos seguir?";
-
-        const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
-        window.open(url, '_blank');
+    setupNavigation() {
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
     }
 };
 
-// Event Listeners initialization
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('btn-inquilino').addEventListener('click', () => app.showTenantFlow());
-    document.getElementById('btn-proprietario').addEventListener('click', () => app.showOwnerFlow());
-});
+// Initialize the app
+document.addEventListener('DOMContentLoaded', () => app.init());

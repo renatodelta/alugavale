@@ -4,19 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AlugaVale | Especialistas em Taubaté e Tremembé</title>
+    <title>AlugaVale | Consultoria Imobiliária Premium em Taubaté</title>
     <meta name="description"
-        content="A forma mais inteligente e ágil de alugar ou anunciar seu imóvel em Taubaté e Tremembé. Sem burocracia.">
+        content="Consultoria especializada em locação e vendas de alto padrão em Taubaté e Tremembé. Resultados que você confia.">
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
 
-    <!-- Google Fonts -->
+    <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- FontAwesome -->
+    <!-- UI Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <link rel="stylesheet" href="css/style.css">
@@ -24,225 +24,278 @@
 
 <body>
 
-    <!-- Navbar -->
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5512992400019" class="whatsapp-fixed" target="_blank">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Header / Navbar -->
     <nav class="navbar">
         <div class="container nav-container">
-            <div class="logo">
-                <img src="images/favicon.svg" alt="Logo AlugaVale" width="45" height="45" style="margin-right: -4px;">
-                Aluga<span style="font-weight: 600;">Vale</span>
-            </div>
-            <a href="https://wa.me/5512992400019" target="_blank" class="btn-outline btn-nav-whatsapp">
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon-whatsapp" width="20" height="20" fill="currentColor"
-                    viewBox="0 0 16 16">
-                    <path
-                        d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
-                </svg>
-                <span class="btn-text">Falar com Corretora</span>
+            <a href="/" class="logo">
+                Aluga<span>Vale</span>
             </a>
+            <div class="nav-links">
+                <a href="#bairros">Bairros</a>
+                <a href="#comparacoes">Comparações</a>
+                <a href="#artigos">Artigos</a>
+                <a href="#sobre">Sobre</a>
+            </div>
+            <div class="nav-actions">
+                <a href="https://wa.me/5512992400019" target="_blank" class="btn-cta">
+                    Falar com Fabiana
+                </a>
+            </div>
         </div>
     </nav>
 
-    <!-- Main Hero Section -->
-    <section class="hero" id="hero-section">
-        <div class="hero-bg"></div>
-        <div class="hero-overlay"></div>
-        <div class="container hero-content">
-            <span class="badge">Especialistas em Taubaté e Tremembé</span>
-            <h1>O caminho mais inteligente para o seu <span class="highlight">próximo aluguel</span></h1>
-            <p class="subtitle">Selecione seu perfil abaixo e tenha um atendimento automatizado e sem burocracia.</p>
+    <!-- Main Content Wrapper -->
+    <div id="home-content">
 
-            <div class="action-cards">
-                <!-- Card Inquilino -->
-                <div class="action-card" id="btn-inquilino">
-                    <div class="card-icon">
-                        <i class="fa-solid fa-key"></i>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="container hero-layout">
+                <div class="hero-text-content">
+                    <span class="hero-badge">Expertise Imobiliária em Taubaté</span>
+                    <h1>Encontre o imóvel ideal em Taubaté e Tremembé — <span class="text-gradient">sem dor de cabeça</span></h1>
+                    <p class="hero-subheadline">Compare bairros, descubra preços e alugue com a segurança de quem conhece cada rua da região.</p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#busca" class="btn-primary">🔎 Buscar imóveis / explorar bairros</a>
+                        <a href="https://wa.me/5512992400019" target="_blank" class="btn-secondary">💬 Falar com especialista (Fabiana)</a>
                     </div>
-                    <h3>Quero Alugar um Imóvel</h3>
-                    <p>Faça uma simulação rápida e descubra o imóvel ideal para seu perfil.</p>
-                    <span class="card-link">Fazer simulação <i class="fa-solid fa-arrow-right"></i></span>
                 </div>
-
-                <!-- Card Proprietário (Destaque) -->
-                <div class="action-card featured" id="btn-proprietario">
-                    <div class="card-badge">Para Proprietários</div>
-                    <div class="card-icon">
-                        <i class="fa-solid fa-house-circle-check"></i>
-                    </div>
-                    <h3>Quero Anunciar meu Imóvel</h3>
-                    <p>Descubra o valor ideal de locação e alugue muito mais rápido.</p>
-                    <span class="card-link">Avaliação gratuita <i class="fa-solid fa-arrow-right"></i></span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Flow: Inquilino (Buscador / Simulador) -->
-    <section class="flow-section hidden" id="flow-inquilino">
-        <div class="container flow-container">
-            <button class="btn-back" onclick="app.showHero()"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
-            <div class="form-wrapper">
-                <div class="form-header">
-                    <h2>Encontre seu novo lar 🏠</h2>
-                    <p>Responda 3 perguntas rápidas para encontrarmos as melhores opções para você.</p>
-                </div>
-
-                <!-- Progress Line -->
-                <div class="progress-bar">
-                    <div class="progress-fill" id="tenant-progress"></div>
-                </div>
-
-                <div class="wizard" id="tenant-wizard">
-                    <!-- Step 1 -->
-                    <div class="step active" data-step="1">
-                        <h3>Onde você quer morar?</h3>
-                        <div class="options-grid">
-                            <div class="option-box" onclick="app.selectOption(this, 'cidade', 'Taubaté')">Taubaté</div>
-                            <div class="option-box" onclick="app.selectOption(this, 'cidade', 'Tremembé')">Tremembé
+                
+                <div class="hero-visual">
+                    <div class="hero-image-card">
+                        <img src="images/hero-bg.png" alt="Taubaté e Tremembé" class="hero-img">
+                        <div class="floating-stat">
+                            <i class="fa-solid fa-house-circle-check"></i>
+                            <div>
+                                <strong>+500</strong>
+                                <span>Famílias atendidas</span>
                             </div>
-                            <div class="option-box" onclick="app.selectOption(this, 'cidade', 'Indiferente')">
-                                Indiferente</div>
-                        </div>
-
-                        <h3 class="mt-4">Que tipo de imóvel?</h3>
-                        <div class="options-grid">
-                            <div class="option-box" onclick="app.selectOption(this, 'tipo', 'Casa')">Casa</div>
-                            <div class="option-box" onclick="app.selectOption(this, 'tipo', 'Apartamento')">Apartamento
-                            </div>
-                            <div class="option-box" onclick="app.selectOption(this, 'tipo', 'Comercial')">Comercial
-                            </div>
-                            <div class="option-box" onclick="app.selectOption(this, 'tipo', 'Terreno')">Terreno</div>
-                        </div>
-                        <button class="btn-primary mt-4" onclick="app.nextStep('tenant', 2)">Próximo Passo <i
-                                class="fa-solid fa-arrow-right"></i></button>
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div class="step" data-step="2">
-                        <h3>Qual o valor máximo de aluguel?</h3>
-                        <div class="range-container mt-4">
-                            <input type="range" id="rent-value" min="800" max="4000" step="100" value="1500"
-                                oninput="app.updateRentValue(this.value)">
-                            <div class="value-display">Até R$ <span id="rent-value-display">1.500</span>/mês</div>
-                        </div>
-                        <p class="hint"><i class="fa-solid fa-circle-info"></i> Lembre-se: o aluguel não deve
-                            comprometer mais que 30% da sua renda.</p>
-
-                        <div class="step-actions mt-4">
-                            <button class="btn-outline" onclick="app.prevStep('tenant', 1)">Voltar</button>
-                            <button class="btn-primary" onclick="app.nextStep('tenant', 3)">Próximo Passo <i
-                                    class="fa-solid fa-arrow-right"></i></button>
-                        </div>
-                    </div>
-
-                    <!-- Step 3 -->
-                    <div class="step" data-step="3">
-                        <h3>Análise de Perfil (Confidencial) 🔒</h3>
-                        <p class="subtitle mb-4">Isso ajuda a agilizar a sua aprovação!</p>
-
-                        <div class="input-group">
-                            <label>Renda familiar mensal aproximada:</label>
-                            <select id="renda-familiar" class="form-control">
-                                <option value="Até R$ 3.000">Até R$ 3.000</option>
-                                <option value="R$ 3.000 a R$ 5.000">R$ 3.000 a R$ 5.000</option>
-                                <option value="R$ 5.000 a R$ 8.000">R$ 5.000 a R$ 8.000</option>
-                                <option value="Acima de R$ 8.000">Acima de R$ 8.000</option>
-                            </select>
-                        </div>
-
-                        <div class="input-group mt-4">
-                            <label>Possui restrição no nome (SPC/Serasa)?</label>
-                            <div class="options-grid">
-                                <div class="option-box" onclick="app.selectOption(this, 'restricao', 'Não')">Não, nome
-                                    limpo</div>
-                                <div class="option-box" onclick="app.selectOption(this, 'restricao', 'Sim')">Sim, possuo
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="step-actions mt-4">
-                            <button class="btn-outline" onclick="app.prevStep('tenant', 2)">Voltar</button>
-                            <button class="btn-success" onclick="app.finishTenantFlow()">Ver Resultado <i
-                                    class="fa-solid fa-check"></i></button>
-                        </div>
-                    </div>
-
-                    <!-- Result -->
-                    <div class="step" data-step="4">
-                        <div class="success-message">
-                            <div class="success-icon"><i class="fa-solid fa-bolt"></i></div>
-                            <h3>Análise Concluída!</h3>
-                            <p>Temos ótimas opções com o seu perfil. Como seu perfil já está pré-analisado, seu
-                                atendimento será prioritário.</p>
-                            <button class="btn-whatsapp pulse" onclick="app.sendTenantWhatsApp()">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon-whatsapp" width="20" height="20"
-                                    fill="currentColor" viewBox="0 0 16 16">
-                                    <path
-                                        d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
-                                </svg> Falar com a Corretora Agora
-                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Flow: Proprietário (Captação) -->
-    <section class="flow-section hidden" id="flow-proprietario">
-        <div class="container flow-container">
-            <button class="btn-back" onclick="app.showHero()"><i class="fa-solid fa-arrow-left"></i> Voltar</button>
-            <div class="form-wrapper">
-                <div class="form-header">
-                    <div class="badge-gold">Avaliação Gratuita</div>
-                    <h2>Alugue seu imóvel rápido 🚀</h2>
-                    <p>Preencha os dados básicos do seu imóvel e receba uma estimativa de preço e nosso plano de
-                        captação.</p>
-                </div>
-
-                <div class="owner-form">
-                    <div class="input-group">
-                        <label>Seu Nome</label>
-                        <input type="text" id="owner-name" class="form-control" placeholder="Como devemos te chamar?">
-                    </div>
-                    <div class="input-group">
-                        <label>Tipo de Imóvel</label>
-                        <select id="owner-type" class="form-control">
-                            <option value="Casa">Casa</option>
-                            <option value="Apartamento">Apartamento</option>
-                            <option value="Ponto Comercial">Ponto Comercial</option>
-                            <option value="Terreno">Terreno</option>
+        <!-- BUSCA INTELIGENTE -->
+        <section class="search-section" id="busca">
+            <div class="container">
+                <div class="search-bar">
+                    <div class="search-field">
+                        <label>Cidade</label>
+                        <select>
+                            <option>Taubaté</option>
+                            <option>Tremembé</option>
                         </select>
                     </div>
-                    <div class="input-group">
-                        <label>Bairro do Imóvel (Taubaté ou Tremembé)</label>
-                        <input type="text" id="owner-bairro" class="form-control"
-                            placeholder="Ex: Independência, Taubaté">
+                    <div class="search-field">
+                        <label>Bairro</label>
+                        <input type="text" placeholder="Ex: Independência">
                     </div>
-
-                    <button class="btn-primary btn-block mt-4" onclick="app.sendOwnerWhatsApp()">
-                        Solicitar Avaliação e Alugar Rápido <i class="fa-solid fa-paper-plane"></i>
+                    <div class="search-field">
+                        <label>Faixa de preço</label>
+                        <select>
+                            <option>Até R$ 2.000</option>
+                            <option>R$ 2.000 - R$ 5.000</option>
+                            <option>Acima de R$ 5.000</option>
+                        </select>
+                    </div>
+                    <div class="search-field">
+                        <label>Tipo</label>
+                        <select>
+                            <option>Casa</option>
+                            <option>Apartamento</option>
+                        </select>
+                    </div>
+                    <button class="btn-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
+            </div>
+        </section>
 
-                <div class="benefits-grid mt-4">
-                    <div class="benefit-item">
-                        <i class="fa-solid fa-shield-halved"></i> Aluguel Garantido
+        <!-- SEÇÃO DE DECISÃO (DIFERENCIAL) -->
+        <section class="decision-section">
+            <div class="container grid-3">
+                <div class="decision-card">
+                    <div class="card-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <h3>Qual o melhor bairro para você?</h3>
+                    <p>Fizemos um guia completo com o perfil de cada região de Taubaté.</p>
+                    <a href="#bairros" class="link-arrow">Ver bairros <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="decision-card">
+                    <div class="card-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <h3>Quanto posso cobrar de aluguel?</h3>
+                    <p>Descubra o valor de mercado justo para o seu imóvel hoje.</p>
+                    <a href="#avaliacao" class="link-arrow">Simular valor <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+                <div class="decision-card">
+                    <div class="card-icon"><i class="fa-solid fa-comments-dollar"></i></div>
+                    <h3>Vale a pena alugar ou vender?</h3>
+                    <p>Analisamos os números para você tomar a melhor decisão financeira.</p>
+                    <a href="#contato" class="link-arrow">Consultar Fabiana <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPARADOR DE BAIRROS -->
+        <section class="comparator-section" id="comparacoes">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Comparador de Bairros</h2>
+                    <p>Não escolha no escuro. Compare os indicadores dos principais bairros.</p>
+                </div>
+                
+                <div class="comparator-ui">
+                    <div class="comp-col">
+                        <div class="comp-header">
+                            <span class="badge">Bairro 1</span>
+                            <h3>Independência</h3>
+                        </div>
+                        <ul class="comp-list">
+                            <li><span class="label">Preço Médio:</span> <span class="value">R$ 2.500</span></li>
+                            <li><span class="label">Perfil:</span> <span class="value">Comercial/Residencial</span></li>
+                            <li><span class="label">Infra:</span> <span class="value">Excelente</span></li>
+                            <li><span class="label">Valorização:</span> <span class="value">Alta</span></li>
+                        </ul>
                     </div>
-                    <div class="benefit-item">
-                        <i class="fa-solid fa-bolt"></i> Agilidade
-                    </div>
-                    <div class="benefit-item">
-                        <i class="fa-solid fa-magnifying-glass-chart"></i> Vistoria Detalhada
+                    <div class="vs-circle">VS</div>
+                    <div class="comp-col">
+                        <div class="comp-header">
+                            <span class="badge">Bairro 2</span>
+                            <h3>Jardim das Nações</h3>
+                        </div>
+                        <ul class="comp-list">
+                            <li><span class="label">Preço Médio:</span> <span class="value">R$ 3.200</span></li>
+                            <li><span class="label">Perfil:</span> <span class="value">Alto Padrão</span></li>
+                            <li><span class="label">Infra:</span> <span class="value">Premium</span></li>
+                            <li><span class="label">Valorização:</span> <span class="value">Estável</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <p>&copy; 2026 AlugaVale. Um novo conceito em imobiliária.</p>
+        <!-- CONTEÚDOS EM DESTAQUE -->
+        <section class="portal-grid" id="artigos">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Últimas do Portal</h2>
+                    <div class="portal-categories">
+                        <button class="active">Tudo</button>
+                        <button>Comprar</button>
+                        <button>Alugar</button>
+                        <button>Investir</button>
+                        <button>Bairros</button>
+                    </div>
+                </div>
+
+                <div class="articles-grid">
+                    <article class="article-card">
+                        <div class="article-img" style="background-image: url('images/hero-bg.png')"></div>
+                        <div class="article-content">
+                            <span class="cat">ALUGAR</span>
+                            <h3>5 dicas para alugar seu primeiro apartamento em Taubaté</h3>
+                            <p>Evite erros comuns e garanta um contrato seguro...</p>
+                            <a href="#" class="btn-read">Ler mais</a>
+                        </div>
+                    </article>
+                    <article class="article-card">
+                        <div class="article-img" style="background-image: url('images/hero-bg.png')"></div>
+                        <div class="article-content">
+                            <span class="cat">BAIRROS</span>
+                            <h3>Tremembé: O refúgio que virou polo imobiliário</h3>
+                            <p>Conheça as vantagens de morar na cidade vizinha...</p>
+                            <a href="#" class="btn-read">Ler mais</a>
+                        </div>
+                    </article>
+                    <article class="article-card">
+                        <div class="article-img" style="background-image: url('images/hero-bg.png')"></div>
+                        <div class="article-content">
+                            <span class="cat">INVESTIR</span>
+                            <h3>Airbnb em Taubaté: Vale a pena investir hoje?</h3>
+                            <p>Análise completa de rentabilidade para investidores...</p>
+                            <a href="#" class="btn-read">Ler mais</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- BLOCO DE CONFIANÇA -->
+        <section class="trust-block" id="sobre">
+            <div class="container trust-layout">
+                <div class="trust-image">
+                    <img src="images/corretora.jpg" alt="Fabiana Vitta">
+                </div>
+                <div class="trust-content">
+                    <span class="badge">Atendimento Exclusivo</span>
+                    <h2>Se você quer evitar erros e ter acompanhamento profissional...</h2>
+                    <p>Prazer, sou <strong>Fabiana Vitta</strong>. Minha missão é transformar a burocracia imobiliária em uma experiência leve, segura e lucrativa para você.</p>
+                    <a href="https://wa.me/5512992400019" target="_blank" class="btn-whatsapp-large">
+                        <i class="fa-brands fa-whatsapp"></i> Falar no WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CAPTURA DE LEADS -->
+        <section class="lead-capture" id="avaliacao">
+            <div class="container">
+                <div class="capture-card">
+                    <div class="capture-text">
+                        <h2>Descubra quanto vale seu imóvel para aluguel</h2>
+                        <p>Receba uma análise gratuita de mercado direto no seu WhatsApp.</p>
+                    </div>
+                    <form class="capture-form">
+                        <input type="text" placeholder="Seu Nome" required>
+                        <input type="tel" placeholder="Seu WhatsApp" required>
+                        <button type="submit" class="btn-submit">Solicitar Avaliação <i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </div> <!-- End Home Content -->
+
+    <footer class="footer-professional">
+        <div class="container footer-grid">
+            <div class="footer-info">
+                <div class="logo">Aluga<span>Vale</span></div>
+                <p>Sua central de decisão imobiliária em Taubaté e região.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-nav">
+                <h4>Links Úteis</h4>
+                <a href="#busca">Buscar Imóveis</a>
+                <a href="#bairros">Guia de Bairros</a>
+                <a href="#comparacoes">Comparador</a>
+            </div>
+            <div class="footer-nav">
+                <h4>Artigos Populares</h4>
+                <a href="#">Melhores Bairros 2026</a>
+                <a href="#">Como Valorizar seu Imóvel</a>
+                <a href="#">Guia do Inquilino</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contato</h4>
+                <p><i class="fa-solid fa-phone"></i> (12) 99240-0019</p>
+                <p><i class="fa-solid fa-envelope"></i> contato@alugavale.com.br</p>
+                <p><i class="fa-solid fa-location-dot"></i> Taubaté, SP</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 AlugaVale. Todos os direitos reservados. Design by Fabiana Vitta.</p>
+            </div>
         </div>
     </footer>
 
