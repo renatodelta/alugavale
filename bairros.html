@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Bairros Interativo | AlugaVale Taubaté & Tremembé</title>
+    <meta name="description" content="Descubra o bairro ideal para você em Taubaté e Tremembé através do nosso guia interativo e personalizado.">
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bairros.css">
+</head>
+
+<body class="bairros-page">
+
+    <!-- Header Simples -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Aluga<span>Vale</span></a>
+            <a href="index.html" class="btn-back-home"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+        </div>
+    </nav>
+
+    <!-- 1. BLOCO INICIAL (Impacto) -->
+    <section class="bairros-hero">
+        <div class="container">
+            <div class="hero-content-center">
+                <span class="badge">Inteligência Imobiliária</span>
+                <h1>Qual o melhor bairro para você em Taubaté e Tremembé?</h1>
+                <p>Descubra em menos de 1 minuto com base no seu perfil, orçamento e estilo de vida.</p>
+                <button class="btn-primary btn-large" onclick="quiz.start()">
+                    Descobrir meu bairro ideal <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. QUIZ INTERATIVO (Oculto por padrão) -->
+    <section id="quiz-container" class="quiz-section hidden">
+        <div class="container">
+            <div class="quiz-card">
+                <div id="quiz-steps" class="quiz-body">
+                    <!-- Steps will be injected here by JS -->
+                </div>
+                
+                <div id="quiz-result" class="result-area hidden">
+                    <div class="result-header">
+                        <h2>Seu perfil combina com: <span id="neighborhood-result" class="text-gradient">---</span></h2>
+                        <div class="result-box">
+                             <p id="result-explanation">---</p>
+                        </div>
+                    </div>
+                    
+                    <div class="result-actions">
+                        <a href="#comparacao" class="btn-primary">Ver detalhes do bairro</a>
+                        <button class="btn-secondary" onclick="quiz.restart()">Refazer Quiz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. MAPA VISUAL DE PERFIL -->
+    <section class="map-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Mapa Estratégico da Região</h2>
+                <p>Navegue pelos perfis de cada área de forma visual.</p>
+            </div>
+            
+            <div class="map-visual-container">
+                <div class="interactive-map">
+                    <div class="map-placeholder">
+                        <div class="map-point point-premium" title="Jardim das Nações: Perfil Executivo"></div>
+                        <div class="map-point point-familiar" title="Independência: Infraestrutura Total"></div>
+                        <div class="map-point point-tranquilo" title="Tremembé: Refúgio e Paz"></div>
+                        <div class="map-point point-economico" title="San Marino: Custo-benefício"></div>
+                    </div>
+                </div>
+                
+                <div class="map-legend">
+                    <div class="legend-item"><span class="dot premium"></span> Premium / Executivo</div>
+                    <div class="legend-item"><span class="dot familiar"></span> Familiar / Residencial</div>
+                    <div class="legend-item"><span class="dot economico"></span> Econômico / Prático</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CARDS VISUAIS (Infográficos) -->
+    <section class="neighborhood-cards section-padding">
+        <div class="container">
+            <div class="grid-3">
+                <!-- Jardim das Nações -->
+                <div class="infographic-card">
+                    <div class="card-image bg-nacoes"></div>
+                    <div class="card-body">
+                        <span class="badge-mini premium">Âncora Premium</span>
+                        <h3>Jardim das Nações</h3>
+                        <div class="stats-list">
+                            <div class="stat"><i class="fa-solid fa-coins"></i> Padrão: <span>Alto</span></div>
+                            <div class="stat"><i class="fa-solid fa-shield"></i> Segurança: <span>Altíssima</span></div>
+                            <div class="stat"><i class="fa-solid fa-user-tie"></i> Perfil: <span>Executivo</span></div>
+                        </div>
+                        <p>A região mais valorizada, próxima de tudo e ideal para quem busca o máximo padrão.</p>
+                    </div>
+                </div>
+                
+                <!-- Independência -->
+                <div class="infographic-card">
+                    <div class="card-image bg-independencia"></div>
+                    <div class="card-body">
+                        <span class="badge-mini balance">Volume de Busca</span>
+                        <h3>Independência</h3>
+                        <div class="stats-list">
+                            <div class="stat"><i class="fa-solid fa-coins"></i> Padrão: <span>Intermediário</span></div>
+                            <div class="stat"><i class="fa-solid fa-hand-holding-dollar"></i> Custo-benefício: <span>Excelente</span></div>
+                            <div class="stat"><i class="fa-solid fa-bolt"></i> Perfil: <span>Jovem</span></div>
+                        </div>
+                        <p>Estrategicamente localizado, é o bairro mais procurado pela conveniência e agito.</p>
+                    </div>
+                </div>
+
+                <!-- Centro -->
+                <div class="infographic-card">
+                    <div class="card-image bg-centro"></div>
+                    <div class="card-body">
+                        <span class="badge-mini functional">Funcional</span>
+                        <h3>Centro</h3>
+                        <div class="stats-list">
+                            <div class="stat"><i class="fa-solid fa-walking"></i> Mobilidade: <span>Total a pé</span></div>
+                            <div class="stat"><i class="fa-solid fa-store"></i> Comércio: <span>Máximo</span></div>
+                            <div class="stat"><i class="fa-solid fa-city"></i> Perfil: <span>Urbano</span></div>
+                        </div>
+                        <p>Praticidade absoluta para quem quer resolver a vida sem depender de carro.</p>
+                    </div>
+                </div>
+
+                <!-- Estiva -->
+                <div class="infographic-card">
+                    <div class="card-image bg-estiva"></div>
+                    <div class="card-body">
+                        <span class="badge-mini economic">Econômico</span>
+                        <h3>Estiva</h3>
+                        <div class="stats-list">
+                            <div class="stat"><i class="fa-solid fa-tags"></i> Aluguel: <span>Acessível</span></div>
+                            <div class="stat"><i class="fa-solid fa-chart-line"></i> Potencial: <span>Crescente</span></div>
+                            <div class="stat"><i class="fa-solid fa-piggy-bank"></i> Perfil: <span>Entrada</span></div>
+                        </div>
+                        <p>A melhor escolha para quem prioriza economia e busca opções de entrada acessíveis.</p>
+                    </div>
+                </div>
+
+                <!-- Quiririm -->
+                <div class="infographic-card">
+                    <div class="card-image bg-quiririm"></div>
+                    <div class="card-body">
+                        <span class="badge-mini emotional">Qualidade de Vida</span>
+                        <h3>Quiririm</h3>
+                        <div class="stats-list">
+                            <div class="stat"><i class="fa-solid fa-leaf"></i> Ambiente: <span>Silencioso</span></div>
+                            <div class="stat"><i class="fa-solid fa-utensils"></i> Gastronomia: <span>Tradicional</span></div>
+                            <div class="stat"><i class="fa-solid fa-house-chimney"></i> Perfil: <span>Interior</span></div>
+                        </div>
+                        <p>Clima calmo, histórico e familiar, ideal para quem busca paz e estilo de vida de interior.</p>
+                    </div>
+                </div>
+
+                <!-- Vila São Geraldo -->
+                <div class="infographic-card">
+                    <div class="card-image bg-saogeraldo"></div>
+                    <div class="card-body">
+                        <span class="badge-mini neutral">Meio Termo</span>
+                        <h3>Vila São Geraldo</h3>
+                        <div class="stats-list">
+                            <div class="stat"><i class="fa-solid fa-balance-scale"></i> Equilíbrio: <span>Alto</span></div>
+                            <div class="stat"><i class="fa-solid fa-road"></i> Acesso: <span>Fácil</span></div>
+                            <div class="stat"><i class="fa-solid fa-check-double"></i> Perfil: <span>Versátil</span></div>
+                        </div>
+                        <p>Uma região equilibrada em preço e infraestrutura, sendo a decisão segura e versátil.</p>
+                    </div>
+                </div>
+
+                <!-- Tremembé -->
+                <div class="infographic-card">
+                    <div class="card-image bg-tremembe"></div>
+                    <div class="card-body">
+                        <span class="badge-mini alternative">Alternativa Inteligente</span>
+                        <h3>Tremembé (Central)</h3>
+                        <div class="stats-list">
+                            <div class="stat"><i class="fa-solid fa-tree"></i> Sossego: <span>Máximo</span></div>
+                            <div class="stat"><i class="fa-solid fa-house-user"></i> Casas: <span>Maiores</span></div>
+                            <div class="stat"><i class="fa-solid fa-users"></i> Perfil: <span>Familiar</span></div>
+                        </div>
+                        <p>Casas espaçosas e tranquilidade absoluta, mantendo Taubaté sempre por perto.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. COMPARADOR RÁPIDO -->
+    <section class="comparator-area section-padding" id="comparacao">
+        <div class="container">
+            <div class="section-header">
+                <h2>Comparador de Vantagens</h2>
+            </div>
+            <div class="table-responsive">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Bairro</th>
+                            <th>Preço</th>
+                            <th>Segurança</th>
+                            <th>Perfil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Independência</td>
+                            <td>$$</td>
+                            <td>Média/Alta</td>
+                            <td>Jovem / Comercial</td>
+                        </tr>
+                        <tr>
+                            <td>Jardim das Nações</td>
+                            <td>$$$</td>
+                            <td>Altíssima</td>
+                            <td>Família / Executivo</td>
+                        </tr>
+                        <tr>
+                            <td>Tremembé</td>
+                            <td>$$</td>
+                            <td>Alta</td>
+                            <td>Refúgio / Sossego</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. CTA INTELIGENTE -->
+    <section class="bairros-cta">
+        <div class="container">
+            <div class="cta-box-premium">
+                <div class="broker-mini">
+                    <img src="images/corretora.jpg" alt="Fabiana Vitta">
+                </div>
+                <div class="cta-text">
+                    <h3>Agora que você já sabe seu perfil...</h3>
+                    <p>O próximo passo é encontrar o imóvel certo que combine com essa escolha.</p>
+                    <a href="https://wa.me/5512992400019" target="_blank" class="btn-whatsapp-large">
+                        <i class="fa-brands fa-whatsapp"></i> Ver opções com especialista
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-bottom">
+        <div class="container">
+            <p>&copy; 2026 AlugaVale. Sua bússola imobiliária.</p>
+        </div>
+    </footer>
+
+    <script src="js/quiz.js"></script>
+</body>
+
+</html>

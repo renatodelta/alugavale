@@ -1,0 +1,242 @@
+/* =========================================
+   Bairros Page Specific Styles
+   ========================================= */
+
+.bairros-page {
+    background-color: var(--bg-white);
+}
+
+/* Hero */
+.bairros-hero {
+    padding: 140px 0 80px;
+    background: linear-gradient(rgba(245, 245, 244, 0.9), rgba(245, 245, 244, 0.9)), url('../images/hero-bg.png');
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+}
+
+.hero-content-center {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.btn-large {
+    padding: 20px 40px;
+    font-size: 1.2rem;
+    margin-top: 30px;
+}
+
+/* Quiz Section */
+.quiz-section {
+    padding: 60px 0;
+    margin-top: -40px;
+    position: relative;
+    z-index: 100;
+}
+
+.quiz-card {
+    background: white;
+    padding: 60px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-premium);
+    max-width: 700px;
+    margin: 0 auto;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.quiz-body h3 {
+    font-size: 1.75rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.option-btn {
+    padding: 20px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: white;
+    cursor: pointer;
+    text-align: left;
+    font-size: 1.1rem;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.option-btn:hover {
+    border-color: var(--accent);
+    background: #FFF7ED;
+    transform: translateX(10px);
+}
+
+.option-btn i {
+    color: var(--accent);
+    font-size: 1.25rem;
+}
+
+/* Quiz Result */
+.result-area {
+    text-align: center;
+}
+
+.result-box {
+    background: var(--bg-gray);
+    padding: 30px;
+    border-radius: var(--radius-md);
+    margin: 24px 0;
+    line-height: 1.8;
+}
+
+/* Map Visual */
+.map-visual-container {
+    background: white;
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    margin-top: 40px;
+}
+
+.map-placeholder {
+    width: 100%;
+    height: 400px;
+    background: #E5E7EB;
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+    background-image: url('https://api.mapbox.com/styles/v1/mapbox/light-v10/static/-45.85,-23.18,11/800x400?access_token=none'); /* Mock map */
+    background-size: cover;
+}
+
+.map-point {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 3px solid white;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.map-point:hover {
+    transform: scale(1.5);
+    z-index: 10;
+}
+
+.point-premium { top: 40%; left: 50%; background: #C2410C; }
+.point-familiar { top: 30%; left: 45%; background: #10B981; }
+.point-tranquilo { top: 20%; left: 60%; background: #0F172A; }
+.point-economico { top: 60%; left: 40%; background: #F59E0B; }
+
+.map-legend {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.dot.premium { background: #C2410C; }
+.dot.familiar { background: #10B981; }
+.dot.economico { background: #F59E0B; }
+
+/* Infographic Cards */
+.infographic-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.infographic-card:hover { transform: translateY(-10px); }
+
+.card-image {
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+}
+
+.bg-nacoes { background-color: #44403C; opacity: 0.8; }
+.bg-independencia { background-color: #57534E; opacity: 0.7; }
+.bg-tremembe { background-color: #78716C; opacity: 0.6; }
+
+.card-body { padding: 30px; }
+.stats-list { margin: 20px 0; }
+.stat { 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 10px; 
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+.stat i { color: var(--accent); width: 20px; }
+.stat span { font-weight: 700; color: var(--text-main); }
+
+/* Comparison Table */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.comparison-table th, .comparison-table td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+}
+
+.comparison-table th {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+}
+
+/* CTA Deluxe */
+.cta-box-premium {
+    background: var(--primary);
+    color: white;
+    padding: 60px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.broker-mini img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid var(--accent);
+    object-fit: cover;
+}
+
+.cta-text h3 { color: white; font-size: 2rem; margin-bottom: 16px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .quiz-card { padding: 30px; }
+    .cta-box-premium { flex-direction: column; text-align: center; padding: 40px; }
+    .map-legend { flex-direction: column; gap: 10px; align-items: center; }
+}
