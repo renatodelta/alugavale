@@ -105,6 +105,13 @@ const quiz = {
 
         nameEl.innerText = result;
         descEl.innerText = neighborhoods[result];
+        
+        const waLink = document.getElementById('quiz-whats-link');
+        if (waLink) {
+            const text = `Olá, fiz o quiz de bairros e meu resultado deu: ${result}. Gostaria de receber opções para meu perfil!`;
+            waLink.href = `https://wa.me/5512992400019?text=${encodeURIComponent(text)}`;
+        }
+        
         resultSection.classList.remove('hidden');
     },
 

@@ -113,8 +113,9 @@
     border-radius: var(--radius-md);
     position: relative;
     overflow: hidden;
-    background-image: url('https://api.mapbox.com/styles/v1/mapbox/light-v10/static/-45.85,-23.18,11/800x400?access_token=none'); /* Mock map */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), url('../images/hero-bg.png');
     background-size: cover;
+    background-position: center;
 }
 
 .map-point {
@@ -164,19 +165,74 @@
     overflow: hidden;
     border: 1px solid var(--border);
     transition: var(--transition);
+    box-shadow: var(--shadow-sm);
 }
 
-.infographic-card:hover { transform: translateY(-10px); }
+.infographic-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-premium);
+}
 
 .card-image {
     height: 160px;
     background-size: cover;
     background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.bg-nacoes { background-color: #44403C; opacity: 0.8; }
-.bg-independencia { background-color: #57534E; opacity: 0.7; }
-.bg-tremembe { background-color: #78716C; opacity: 0.6; }
+.card-image-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    z-index: 2;
+    position: relative;
+}
+
+.card-big-icon {
+    font-size: 2.5rem;
+    color: white;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
+}
+
+.card-image-label {
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    background: rgba(0,0,0,0.25);
+    padding: 4px 12px;
+    border-radius: 999px;
+    backdrop-filter: blur(4px);
+}
+
+/* Gradientes únicos por bairro */
+.bg-nacoes {
+    background: linear-gradient(135deg, #44403C 0%, #C2410C 100%);
+}
+.bg-independencia {
+    background: linear-gradient(135deg, #065F46 0%, #10B981 100%);
+}
+.bg-centro {
+    background: linear-gradient(135deg, #1E3A5F 0%, #3B82F6 100%);
+}
+.bg-estiva {
+    background: linear-gradient(135deg, #92400E 0%, #F59E0B 100%);
+}
+.bg-quiririm {
+    background: linear-gradient(135deg, #14532D 0%, #4ADE80 100%);
+}
+.bg-saogeraldo {
+    background: linear-gradient(135deg, #4C1D95 0%, #7C3AED 100%);
+}
+.bg-tremembe {
+    background: linear-gradient(135deg, #0F172A 0%, #059669 100%);
+}
 
 .card-body { padding: 30px; }
 .stats-list { margin: 20px 0; }

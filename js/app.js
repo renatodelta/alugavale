@@ -55,14 +55,22 @@ const app = {
 
     setupEventListeners() {
         // Lead Capture Form
-        const captureForm = document.querySelector('.capture-form');
+        const captureForm = document.getElementById('leadForm');
         if (captureForm) {
             captureForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                const name = captureForm.querySelector('input[type="text"]').value;
-                const whatsapp = captureForm.querySelector('input[type="tel"]').value;
+                const name = document.getElementById('leadName').value;
+                const whatsapp = document.getElementById('leadPhone').value;
+                const intent = document.getElementById('leadIntent').value;
                 
-                const text = `Olá Fabiana! Gostaria de uma *Avaliação de Aluguel* para meu imóvel. \n\n*Nome:* ${name}\n*WA:* ${whatsapp}`;
+                let baseMessage = "Olá!";
+                if (intent === 'quero_alugar') {
+                    baseMessage = "Olá, quero ajuda para encontrar um imóvel para alugar em Taubaté.";
+                } else if (intent === 'quero_anunciar') {
+                    baseMessage = "Olá, quero saber quanto posso cobrar de aluguel no meu imóvel.";
+                }
+
+                const text = `${baseMessage}\n\nMeu nome é *${name}*\nMeu WhatsApp é *${whatsapp}*`;
                 const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
                 window.open(url, '_blank');
             });
@@ -79,13 +87,7 @@ const app = {
             });
         });
 
-        // Search Button (Mock)
-        const btnSearch = document.querySelector('.btn-search');
-        if (btnSearch) {
-            btnSearch.addEventListener('click', () => {
-                alert('Iniciando busca inteligente... (Simulação)');
-            });
-        }
+
     },
 
     setupNavigation() {
@@ -106,4 +108,112 @@ const app = {
 };
 
 // Initialize the app
-document.addEventListener('DOMContentLoaded', () => app.init());
+document.addEventListener('DOMContentLoaded', () => {
+    app.init();
+    // Init comparator if on home page
+    if (document.getElementById('comp-list-1')) {
+        updateComparator();
+    }
+});
+
+// =============================================
+// COMPARADOR DE BAIRROS — Banco de Dados
+// =============================================
+const bairrosDB = {
+    independencia: {
+        nome: 'Independência',
+        preco: 'R$ 2.200 – R$ 3.000',
+        perfil: 'Jovem / Familiar',
+        infra: 'Excelente',
+        valorizacao: 'Alta',
+        seguranca: 'Média/Alta',
+        destaque: 'Mais procurado'
+    },
+    jardim: {
+        nome: 'Jardim das Nações',
+        preco: 'R$ 3.000 – R$ 5.000+',
+        perfil: 'Executivo / Alto Padrão',
+        infra: 'Premium',
+        valorizacao: 'Estável',
+        seguranca: 'Altíssima',
+        destaque: 'Âncora Premium'
+    },
+    centro: {
+        nome: 'Centro',
+        preco: 'R$ 1.500 – R$ 2.800',
+        perfil: 'Urbano / Funcional',
+        infra: 'Máxima',
+        valorizacao: 'Moderada',
+        seguranca: 'Média',
+        destaque: 'Tudo a pé'
+    },
+    estiva: {
+        nome: 'Estiva',
+        preco: 'R$ 1.000 – R$ 2.000',
+        perfil: 'Entrada / Econômico',
+        infra: 'Básica',
+        valorizacao: 'Crescente',
+        seguranca: 'Média',
+        destaque: 'Mais acessível'
+    },
+    quiririm: {
+        nome: 'Quiririm',
+        preco: 'R$ 1.200 – R$ 2.500',
+        perfil: 'Interior / Tranquilo',
+        infra: 'Boa',
+        valorizacao: 'Gradual',
+        seguranca: 'Alta',
+        destaque: 'Qualidade de vida'
+    },
+    saogeraldo: {
+        nome: 'Vila São Geraldo',
+        preco: 'R$ 1.500 – R$ 2.800',
+        perfil: 'Versátil / Equilibrado',
+        infra: 'Boa',
+        valorizacao: 'Moderada',
+        seguranca: 'Alta',
+        destaque: 'Custo-benefício'
+    },
+    tremembe: {
+        nome: 'Tremembé',
+        preco: 'R$ 1.300 – R$ 2.600',
+        perfil: 'Familiar / Sossego',
+        infra: 'Boa',
+        valorizacao: 'Crescente',
+        seguranca: 'Alta',
+        destaque: 'Casas maiores'
+    }
+};
+
+function updateComparator() {
+    const keys = ['preco', 'perfil', 'infra', 'valorizacao', 'seguranca', 'destaque'];
+    const labels = {
+        preco: 'Preço Médio',
+        perfil: 'Perfil',
+        infra: 'Infraestrutura',
+        valorizacao: 'Valorização',
+        seguranca: 'Segurança',
+        destaque: 'Destaque'
+    };
+
+    [1, 2].forEach(n => {
+        const key = document.getElementById(`comp-select-${n}`).value;
+        const data = bairrosDB[key];
+        const list = document.getElementById(`comp-list-${n}`);
+
+        list.style.opacity = '0';
+        list.style.transform = 'translateY(10px)';
+        list.style.transition = 'opacity 0.3s, transform 0.3s';
+
+        setTimeout(() => {
+            list.innerHTML = keys.map(k => `
+                <li>
+                    <span class="label">${labels[k]}:</span>
+                    <span class="value">${data[k]}</span>
+                </li>
+            `).join('');
+            list.style.opacity = '1';
+            list.style.transform = 'translateY(0)';
+        }, 150);
+    });
+}

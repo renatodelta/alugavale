@@ -50,16 +50,15 @@
                 </div>
                 
                 <div id="quiz-result" class="result-area hidden">
-                    <div class="result-header">
-                        <h2>Seu perfil combina com: <span id="neighborhood-result" class="text-gradient">---</span></h2>
+                    <div class="result-header" style="margin-top: 40px;">
+                        <h2 style="font-size: 2rem; margin-bottom: 20px;">Seu perfil combina com: <br><span id="neighborhood-result" class="text-gradient" style="display: inline-block; margin-top: 10px;">---</span></h2>
                         <div class="result-box">
                              <p id="result-explanation">---</p>
                         </div>
                     </div>
-                    
-                    <div class="result-actions">
-                        <a href="#comparacao" class="btn-primary">Ver detalhes do bairro</a>
-                        <button class="btn-secondary" onclick="quiz.restart()">Refazer Quiz</button>
+                    <div class="result-actions flex-column" style="display: flex; flex-direction: column; gap: 10px;">
+                        <a href="https://wa.me/5512992400019" id="quiz-whats-link" target="_blank" class="btn-primary" style="justify-content: center; font-size: 1.1rem; padding: 18px;">💬 Falar com a Fabiana sobre este bairro</a>
+                        <button class="btn-secondary" onclick="quiz.restart()" style="justify-content: center; font-size: 1.1rem; padding: 18px; font-weight: 700;">Refazer Quiz</button>
                     </div>
                 </div>
             </div>
@@ -75,19 +74,14 @@
             </div>
             
             <div class="map-visual-container">
-                <div class="interactive-map">
-                    <div class="map-placeholder">
-                        <div class="map-point point-premium" title="Jardim das Nações: Perfil Executivo"></div>
-                        <div class="map-point point-familiar" title="Independência: Infraestrutura Total"></div>
-                        <div class="map-point point-tranquilo" title="Tremembé: Refúgio e Paz"></div>
-                        <div class="map-point point-economico" title="San Marino: Custo-benefício"></div>
-                    </div>
-                </div>
-                
-                <div class="map-legend">
+                <!-- Google Maps JS API -->
+                <div id="bairros-map" style="width:100%; height:450px; border-radius: var(--radius-md); overflow:hidden;"></div>
+
+                <div class="map-legend" style="margin-top: 24px;">
                     <div class="legend-item"><span class="dot premium"></span> Premium / Executivo</div>
                     <div class="legend-item"><span class="dot familiar"></span> Familiar / Residencial</div>
                     <div class="legend-item"><span class="dot economico"></span> Econômico / Prático</div>
+                    <div class="legend-item"><span class="dot" style="background:#0F172A"></span> Tranquilo / Interior</div>
                 </div>
             </div>
         </div>
@@ -99,9 +93,13 @@
             <div class="grid-3">
                 <!-- Jardim das Nações -->
                 <div class="infographic-card">
-                    <div class="card-image bg-nacoes"></div>
+                    <div class="card-image bg-nacoes">
+                        <div class="card-image-inner">
+                            <i class="fa-solid fa-gem card-big-icon"></i>
+                            <span class="card-image-label">Âncora Premium</span>
+                        </div>
+                    </div>
                     <div class="card-body">
-                        <span class="badge-mini premium">Âncora Premium</span>
                         <h3>Jardim das Nações</h3>
                         <div class="stats-list">
                             <div class="stat"><i class="fa-solid fa-coins"></i> Padrão: <span>Alto</span></div>
@@ -114,9 +112,13 @@
                 
                 <!-- Independência -->
                 <div class="infographic-card">
-                    <div class="card-image bg-independencia"></div>
+                    <div class="card-image bg-independencia">
+                        <div class="card-image-inner">
+                            <i class="fa-solid fa-bolt card-big-icon"></i>
+                            <span class="card-image-label">Volume de Busca</span>
+                        </div>
+                    </div>
                     <div class="card-body">
-                        <span class="badge-mini balance">Volume de Busca</span>
                         <h3>Independência</h3>
                         <div class="stats-list">
                             <div class="stat"><i class="fa-solid fa-coins"></i> Padrão: <span>Intermediário</span></div>
@@ -129,9 +131,13 @@
 
                 <!-- Centro -->
                 <div class="infographic-card">
-                    <div class="card-image bg-centro"></div>
+                    <div class="card-image bg-centro">
+                        <div class="card-image-inner">
+                            <i class="fa-solid fa-city card-big-icon"></i>
+                            <span class="card-image-label">Funcional</span>
+                        </div>
+                    </div>
                     <div class="card-body">
-                        <span class="badge-mini functional">Funcional</span>
                         <h3>Centro</h3>
                         <div class="stats-list">
                             <div class="stat"><i class="fa-solid fa-walking"></i> Mobilidade: <span>Total a pé</span></div>
@@ -144,9 +150,13 @@
 
                 <!-- Estiva -->
                 <div class="infographic-card">
-                    <div class="card-image bg-estiva"></div>
+                    <div class="card-image bg-estiva">
+                        <div class="card-image-inner">
+                            <i class="fa-solid fa-piggy-bank card-big-icon"></i>
+                            <span class="card-image-label">Econômico</span>
+                        </div>
+                    </div>
                     <div class="card-body">
-                        <span class="badge-mini economic">Econômico</span>
                         <h3>Estiva</h3>
                         <div class="stats-list">
                             <div class="stat"><i class="fa-solid fa-tags"></i> Aluguel: <span>Acessível</span></div>
@@ -159,9 +169,13 @@
 
                 <!-- Quiririm -->
                 <div class="infographic-card">
-                    <div class="card-image bg-quiririm"></div>
+                    <div class="card-image bg-quiririm">
+                        <div class="card-image-inner">
+                            <i class="fa-solid fa-leaf card-big-icon"></i>
+                            <span class="card-image-label">Qualidade de Vida</span>
+                        </div>
+                    </div>
                     <div class="card-body">
-                        <span class="badge-mini emotional">Qualidade de Vida</span>
                         <h3>Quiririm</h3>
                         <div class="stats-list">
                             <div class="stat"><i class="fa-solid fa-leaf"></i> Ambiente: <span>Silencioso</span></div>
@@ -174,9 +188,13 @@
 
                 <!-- Vila São Geraldo -->
                 <div class="infographic-card">
-                    <div class="card-image bg-saogeraldo"></div>
+                    <div class="card-image bg-saogeraldo">
+                        <div class="card-image-inner">
+                            <i class="fa-solid fa-balance-scale card-big-icon"></i>
+                            <span class="card-image-label">Meio Termo</span>
+                        </div>
+                    </div>
                     <div class="card-body">
-                        <span class="badge-mini neutral">Meio Termo</span>
                         <h3>Vila São Geraldo</h3>
                         <div class="stats-list">
                             <div class="stat"><i class="fa-solid fa-balance-scale"></i> Equilíbrio: <span>Alto</span></div>
@@ -189,9 +207,13 @@
 
                 <!-- Tremembé -->
                 <div class="infographic-card">
-                    <div class="card-image bg-tremembe"></div>
+                    <div class="card-image bg-tremembe">
+                        <div class="card-image-inner">
+                            <i class="fa-solid fa-tree card-big-icon"></i>
+                            <span class="card-image-label">Alternativa Inteligente</span>
+                        </div>
+                    </div>
                     <div class="card-body">
-                        <span class="badge-mini alternative">Alternativa Inteligente</span>
                         <h3>Tremembé (Central)</h3>
                         <div class="stats-list">
                             <div class="stat"><i class="fa-solid fa-tree"></i> Sossego: <span>Máximo</span></div>
@@ -254,10 +276,25 @@
                     <img src="images/corretora.jpg" alt="Fabiana Vitta">
                 </div>
                 <div class="cta-text">
-                    <h3>Agora que você já sabe seu perfil...</h3>
-                    <p>O próximo passo é encontrar o imóvel certo que combine com essa escolha.</p>
-                    <a href="https://wa.me/5512992400019" target="_blank" class="btn-whatsapp-large">
-                        <i class="fa-brands fa-whatsapp"></i> Ver opções com especialista
+                    <h3>Não sabe qual escolher? A Fabiana te orienta com base no seu perfil.</h3>
+                    <p>Fale agora com quem conhece cada rua da região e receba opções exclusivas.</p>
+                    <a href="https://wa.me/5512992400019?text=Ol%C3%A1%2C%20n%C3%A3o%20sei%20qual%20bairro%20escolher.%20Preciso%20de%20ajuda%20com%20base%20no%20meu%20perfil." target="_blank" style="
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 14px;
+                        background: #25D366;
+                        color: white;
+                        font-size: 1.2rem;
+                        font-weight: 700;
+                        padding: 20px 40px;
+                        border-radius: 12px;
+                        text-decoration: none;
+                        margin-top: 12px;
+                        box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+                        transition: transform 0.2s, box-shadow 0.2s;
+                    " onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 14px 32px rgba(37,211,102,0.5)'" onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 8px 24px rgba(37,211,102,0.4)'">
+                        <i class="fa-brands fa-whatsapp" style="font-size: 1.6rem;"></i>
+                        Quero ajuda para escolher bairro
                     </a>
                 </div>
             </div>
@@ -271,6 +308,124 @@
     </footer>
 
     <script src="js/quiz.js"></script>
+
+    <!-- Google Maps JavaScript API -->
+    <!-- IMPORTANTE: substitua SUA_CHAVE_AQUI pela sua chave do Google Cloud Console -->
+    <script>
+        const GOOGLE_MAPS_KEY = 'AIzaSyBgrEtdMlcFMvIGBXdI_jekrnVVGUNa7I8';
+
+        const bairros = [
+            {
+                nome: 'Jardim das Nações',
+                lat: -23.0180, lng: -45.5380,
+                tipo: 'Premium / Executivo',
+                cor: '#C2410C',
+                descricao: 'Âncora premium de Taubaté. Alto padrão, segurança e infraestrutura completa.'
+            },
+            {
+                nome: 'Independência',
+                lat: -23.0330, lng: -45.5520,
+                tipo: 'Familiar / Residencial',
+                cor: '#10B981',
+                descricao: 'O bairro mais procurado. Ótima conveniência e custo-benefício.'
+            },
+            {
+                nome: 'Centro',
+                lat: -23.0262, lng: -45.5554,
+                tipo: 'Funcional / Urbano',
+                cor: '#3B82F6',
+                descricao: 'Praticidade total. Tudo a pé, máximo de comércio e serviços.'
+            },
+            {
+                nome: 'Estiva',
+                lat: -23.0410, lng: -45.5640,
+                tipo: 'Econômico / Prático',
+                cor: '#F59E0B',
+                descricao: 'A opção mais acessível com crescente potencial de valorização.'
+            },
+            {
+                nome: 'Quiririm',
+                lat: -22.9880, lng: -45.5130,
+                tipo: 'Tranquilo / Interior',
+                cor: '#0F172A',
+                descricao: 'Clima de interior, silencioso e familiar. Gastronomia tradicional.'
+            },
+            {
+                nome: 'Vila São Geraldo',
+                lat: -23.0300, lng: -45.5480,
+                tipo: 'Equilibrado / Versátil',
+                cor: '#7C3AED',
+                descricao: 'Equilíbrio entre preço e infraestrutura. Decisão fácil e versátil.'
+            },
+            {
+                nome: 'Tremembé (Central)',
+                lat: -22.9600, lng: -45.5420,
+                tipo: 'Tranquilo / Familiar',
+                cor: '#059669',
+                descricao: 'Casas espaçosas e sossego absoluto, próximo a Taubaté.'
+            }
+        ];
+
+        function initBairrosMap() {
+            const center = { lat: -23.0262, lng: -45.5554 };
+
+            const map = new google.maps.Map(document.getElementById('bairros-map'), {
+                zoom: 13,
+                center: center,
+                mapTypeId: 'roadmap',
+                styles: [
+                    { featureType: 'poi', elementType: 'labels', stylers: [{ visibility: 'off' }] },
+                    { featureType: 'transit', elementType: 'labels', stylers: [{ visibility: 'off' }] }
+                ]
+            });
+
+            const infoWindow = new google.maps.InfoWindow();
+
+            bairros.forEach(bairro => {
+                const svgMarker = {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    fillColor: bairro.cor,
+                    fillOpacity: 1,
+                    strokeColor: 'white',
+                    strokeWeight: 3,
+                    scale: 14
+                };
+
+                const marker = new google.maps.Marker({
+                    position: { lat: bairro.lat, lng: bairro.lng },
+                    map,
+                    title: bairro.nome,
+                    icon: svgMarker,
+                    label: {
+                        text: bairro.nome.charAt(0),
+                        color: 'white',
+                        fontSize: '12px',
+                        fontWeight: 'bold'
+                    }
+                });
+
+                marker.addListener('click', () => {
+                    infoWindow.setContent(`
+                        <div style="font-family: Poppins, sans-serif; padding: 8px; max-width: 220px;">
+                            <strong style="font-size: 1rem; color: #44403C;">${bairro.nome}</strong><br>
+                            <span style="font-size: 0.8rem; color: ${bairro.cor}; font-weight: 600;">${bairro.tipo}</span>
+                            <p style="margin-top: 8px; font-size: 0.85rem; color: #78716C; line-height:1.5;">${bairro.descricao}</p>
+                        </div>
+                    `);
+                    infoWindow.open(map, marker);
+                });
+            });
+        }
+    </script>
+    <script>
+        (function() {
+            const script = document.createElement('script');
+            script.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_KEY}&callback=initBairrosMap&language=pt-BR&region=BR`;
+            script.async = true;
+            script.defer = true;
+            document.head.appendChild(script);
+        })();
+    </script>
 </body>
 
 </html>

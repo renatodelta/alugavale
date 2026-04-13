@@ -73,6 +73,7 @@ h1, h2, h3, h4 {
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .text-gradient { background: linear-gradient(90deg, var(--primary), var(--accent)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .badge { display: inline-block; padding: 6px 12px; background: var(--bg-gray); border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 600; color: var(--accent); margin-bottom: 12px; }
+.hidden { display: none !important; }
 
 /* Buttons */
 .btn-primary { background: var(--primary); color: white; padding: 16px 32px; border-radius: var(--radius-md); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; transition: var(--transition); border: none; cursor: pointer; }
@@ -157,6 +158,31 @@ h1, h2, h3, h4 {
 .comp-list li { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
 .comp-list .label { color: rgba(255,255,255,0.6); }
 .vs-circle { width: 80px; height: 80px; background: var(--accent); color: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.5rem; box-shadow: 0 0 40px rgba(16, 185, 129, 0.4); }
+
+/* Comparador Dropdown */
+.comp-select {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: #2d2926;
+    color: white;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+    appearance: auto;
+}
+.comp-select option {
+    background: #2d2926;
+    color: white;
+    padding: 8px;
+}
+.comp-select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 2px rgba(194,65,12,0.3);
+}
 
 /* =========================================
    Portal Grid
