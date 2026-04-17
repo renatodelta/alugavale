@@ -3,7 +3,7 @@
  * Updated to use a real backend (api.php) for cross-device synchronization.
  */
 
-const API_URL = 'api.php';
+const API_URL = '/api';
 
 // Helper for fetching from API
 async function fetchProperties() {
