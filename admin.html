@@ -101,15 +101,42 @@
 
         async function approve(id) {
             if(confirm('Deseja aprovar este imóvel para aparecer publicamente?')) {
-                await AlugaVale.updatePropertyStatus(id, 'approved');
-                loadAdminProperties();
+                const btn = event.target;
+                const originalText = btn.innerText;
+                btn.innerText = 'Processando...';
+                btn.disabled = true;
+
+                const success = await AlugaVale.updatePropertyStatus(id, 'approved');
+                
+                if (success) {
+                    alert('Imóvel aprovado com sucesso!');
+                    // Pequeno delay para o KV da Cloudflare sincronizar
+                    setTimeout(loadAdminProperties, 2000);
+                } else {
+                    alert('Erro ao aprovar imóvel. Tente novamente.');
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                }
             }
         }
 
         async function reject(id) {
-            if(confirm('Deseja rejeitar este imóvel?')) {
-                await AlugaVale.updatePropertyStatus(id, 'rejected');
-                loadAdminProperties();
+            if(confirm('Deseja rejeitar este imóvel e apagar os dados pesados?')) {
+                const btn = event.target;
+                const originalText = btn.innerText;
+                btn.innerText = 'Processando...';
+                btn.disabled = true;
+
+                const success = await AlugaVale.updatePropertyStatus(id, 'rejected');
+                
+                if (success) {
+                    alert('Imóvel rejeitado e dados limpos.');
+                    setTimeout(loadAdminProperties, 2000);
+                } else {
+                    alert('Erro ao rejeitar. Tente novamente.');
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                }
             }
         }
 
