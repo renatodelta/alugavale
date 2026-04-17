@@ -300,17 +300,21 @@
                 photos: uploadedFiles.map(f => f.base64).slice(0, 2) // Limit Base64 storage to avoid quota error
             };
 
-            // Simulate Network Delay
-            setTimeout(() => {
-                AlugaVale.registerProperty(propertyData);
-                
+            // Send to Real API
+            const result = await AlugaVale.registerProperty(propertyData);
+            
+            if (result) {
                 document.getElementById('propertyForm').classList.add('hidden');
                 document.getElementById('formHeader').classList.add('hidden');
                 document.querySelector('.form-steps').classList.add('hidden');
                 document.getElementById('successMessage').classList.remove('hidden');
                 
                 window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 1800);
+            } else {
+                alert('Ocorreu um erro ao salvar. Tente novamente.');
+                btn.classList.remove('btn-loading');
+                btn.disabled = false;
+            }
         });
     </script>
 </body>

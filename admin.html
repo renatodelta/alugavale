@@ -64,8 +64,8 @@
 
     <script src="js/imoveis.js"></script>
     <script>
-        function loadAdminProperties() {
-            const properties = AlugaVale.getProperties();
+        async function loadAdminProperties() {
+            const properties = await AlugaVale.getProperties();
             const container = document.getElementById('adminTableBody');
             container.innerHTML = '';
 
@@ -99,16 +99,16 @@
             });
         }
 
-        function approve(id) {
+        async function approve(id) {
             if(confirm('Deseja aprovar este imóvel para aparecer publicamente?')) {
-                AlugaVale.updatePropertyStatus(id, 'approved');
+                await AlugaVale.updatePropertyStatus(id, 'approved');
                 loadAdminProperties();
             }
         }
 
-        function reject(id) {
+        async function reject(id) {
             if(confirm('Deseja rejeitar este imóvel?')) {
-                AlugaVale.updatePropertyStatus(id, 'rejected');
+                await AlugaVale.updatePropertyStatus(id, 'rejected');
                 loadAdminProperties();
             }
         }

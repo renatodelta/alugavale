@@ -86,10 +86,10 @@
     <script>
         let currentProperty = null;
 
-        function loadPropertyDetail() {
+        async function loadPropertyDetail() {
             const urlParams = new URLSearchParams(window.location.search);
             const id = urlParams.get('id');
-            const property = AlugaVale.getPropertyById(id);
+            const property = await AlugaVale.getPropertyById(id);
             
             if (!property) {
                 document.getElementById('propertyDetail').innerHTML = '<h2>Imóvel não encontrado.</h2>';

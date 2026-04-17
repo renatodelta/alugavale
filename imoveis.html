@@ -88,8 +88,8 @@
 
     <script src="js/imoveis.js"></script>
     <script>
-        function loadApprovedProperties() {
-            const properties = AlugaVale.getApprovedProperties();
+        async function loadApprovedProperties() {
+            const properties = await AlugaVale.getApprovedProperties();
             const container = document.getElementById('propertiesGrid');
             const emptyState = document.getElementById('emptyState');
             
