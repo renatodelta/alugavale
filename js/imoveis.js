@@ -1,6 +1,7 @@
 /**
  * AlugaVale - Property Management System
- * Updated to use a real backend (api.php) for cross-device synchronization.
+ * Final production version for Cloudflare Pages + KV.
+ * Removed localStorage syncing to avoid QuotaExceededError with photos.
  */
 
 const API_URL = '/api';
@@ -9,13 +10,12 @@ const API_URL = '/api';
 async function fetchProperties() {
     try {
         const response = await fetch(API_URL);
+        if (!response.ok) throw new Error('Network response was not ok');
         const data = await response.json();
-        // Sync to localStorage as backup/cache
-        localStorage.setItem('alugavale_properties', JSON.stringify(data));
-        return data;
+        return data || [];
     } catch (error) {
-        console.error('API Error, falling back to localStorage:', error);
-        return JSON.parse(localStorage.getItem('alugavale_properties') || '[]');
+        console.error('API Error:', error);
+        return [];
     }
 }
 
@@ -29,12 +29,7 @@ async function registerProperty(propertyData) {
         return await response.json();
     } catch (error) {
         console.error('Failed to register via API:', error);
-        // Fallback for demo if API fails
-        const localData = JSON.parse(localStorage.getItem('alugavale_properties') || '[]');
-        const newP = { ...propertyData, id: Date.now().toString(), status: 'pending', createdAt: new Date().toISOString() };
-        localData.push(newP);
-        localStorage.setItem('alugavale_properties', JSON.stringify(localData));
-        return newP;
+        return null;
     }
 }
 
@@ -54,7 +49,7 @@ async function updatePropertyStatus(id, status) {
 
 // Simulated Credit Analysis Logic
 function analyzeCredit(name, cpf, income, rentValue) {
-    // Clean currency string to number if needed
+    // Clean currency string to number
     const numericRentValue = typeof rentValue === 'string' ? parseFloat(rentValue.replace(/\D/g, '')) / 100 : rentValue;
     const ratio = income / (numericRentValue || 1);
     const lastDigit = parseInt(cpf.slice(-1)) || 0;
@@ -79,6 +74,11 @@ function analyzeCredit(name, cpf, income, rentValue) {
         };
     }
 }
+
+// Clear legacy data once to fix QuotaExceededError
+try {
+    localStorage.removeItem('alugavale_properties');
+} catch(e) {}
 
 // Export functions to window for global access
 window.AlugaVale = {
