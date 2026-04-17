@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anuncie seu Imóvel | AlugaVale</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- UI Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/imoveis.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                Aluga<span>Vale</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#bairros">Bairros</a>
+                <a href="imoveis.html">Imóveis</a>
+                <a href="index.html#sobre">Sobre</a>
+            </div>
+            <div class="nav-actions">
+                <a href="https://wa.me/5512992400019" target="_blank" class="btn-cta">
+                    💬 Falar com Fabiana
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="form-container">
+            <div id="formHeader" style="text-align: center; margin-bottom: 40px;">
+                <span class="badge">Proprietários</span>
+                <h1 style="font-size: 2.2rem; line-height: 1.2;">Cadastre seu imóvel e receba interessados <span class="text-gradient">já aprovados</span></h1>
+                <p style="color: var(--text-muted); margin-top: 10px; font-size: 1.1rem;">Conectamos você a inquilinos com análise de crédito prévia.</p>
+            </div>
+
+            <!-- Progress Tracker -->
+            <div class="form-steps">
+                <div class="step-item active" data-step="1">1</div>
+                <div class="step-item" data-step="2">2</div>
+                <div class="step-item" data-step="3">3</div>
+                <div class="step-item" data-step="4">4</div>
+            </div>
+
+            <form id="propertyForm">
+                <!-- Step 1: Proprietário -->
+                <div class="form-section active" id="step1">
+                    <h3 style="margin-bottom: 25px;">Sobre você</h3>
+                    <div class="form-group">
+                        <label for="ownerName">Nome Completo</label>
+                        <input type="text" id="ownerName" class="form-control" placeholder="Como devemos te chamar?" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="ownerPhone">WhatsApp</label>
+                        <input type="tel" id="ownerPhone" class="form-control" placeholder="(00) 00000-0000" required>
+                    </div>
+                    <div style="display: flex; justify-content: flex-end; margin-top: 30px;">
+                        <button type="button" class="btn-primary" onclick="nextStep(2)">Continuar <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Imóvel -->
+                <div class="form-section" id="step2">
+                    <h3 style="margin-bottom: 25px;">Sobre o imóvel</h3>
+                    <div class="grid-3" style="grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 0;">
+                        <div class="form-group">
+                            <label for="type">Tipo</label>
+                            <select id="type" class="form-control" required>
+                                <option value="">Selecione...</option>
+                                <option value="Casa">Casa</option>
+                                <option value="Apartamento">Apartamento</option>
+                                <option value="Comercial">Ponto Comercial</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="neighborhood">Bairro</label>
+                            <input type="text" id="neighborhood" class="form-control" placeholder="Onde fica?" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="rentValue">Valor do Aluguel (Pacote completo)</label>
+                        <input type="text" id="rentValue" class="form-control" placeholder="R$ 0,00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descrição (Diferenciais)</label>
+                        <textarea id="description" class="form-control" rows="4" placeholder="Ex: Quintal grande, suíte, recém reformado..." required></textarea>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                        <button type="button" class="btn-secondary" onclick="nextStep(1)">Voltar</button>
+                        <button type="button" class="btn-primary" onclick="nextStep(3)">Continuar <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Fotos -->
+                <div class="form-section" id="step3">
+                    <h3 style="margin-bottom: 15px;">Fotos do imóvel</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 25px; font-size: 0.95rem;">Imóveis com fotos de boa qualidade alugam até 3x mais rápido.</p>
+                    
+                    <div class="upload-container" onclick="document.getElementById('fileInput').click()">
+                        <div class="upload-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                        <h4>Clique para carregar ou arraste fotos</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Formatos aceitos: JPG, PNG • Máx. 10 fotos</p>
+                        <input type="file" id="fileInput" multiple accept="image/*" style="display: none;">
+                    </div>
+
+                    <div id="photoCounter" style="margin-top: 20px; font-weight: 600; color: var(--primary);">
+                        Fotos selecionadas: <span id="currentPhotoCount">0</span>/10
+                    </div>
+
+                    <div id="previewGrid" class="preview-grid">
+                        <!-- Previews will appear here -->
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                        <button type="button" class="btn-secondary" onclick="nextStep(2)">Voltar</button>
+                        <button type="button" class="btn-primary" onclick="nextStep(4)">Revisar Grátis <i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Revisão -->
+                <div class="form-section" id="step4">
+                    <h3 style="margin-bottom: 25px;">Tudo pronto?</h3>
+                    <div style="background: var(--bg-gray); padding: 25px; border-radius: var(--radius-md); margin-bottom: 30px;">
+                        <p>Ao clicar abaixo, você concorda que nossa equipe entre em contato via WhatsApp para validar seu cadastro imobiliário.</p>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-top: 30px;">
+                        <button type="button" class="btn-secondary" onclick="nextStep(3)">Voltar</button>
+                        <button type="submit" id="submitBtn" class="btn-primary" style="padding: 16px 40px; font-size: 1.1rem;">
+                            Quero anunciar meu imóvel
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="successMessage" class="hidden" style="text-align: center; padding: 40px 0;">
+                <div style="font-size: 70px; color: #22c55e; margin-bottom: 25px;">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h2 style="font-size: 2rem; margin-bottom: 15px;">Seu imóvel foi enviado com sucesso!</h2>
+                <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 500px; margin: 0 auto;">Nossa equipe irá revisar e em breve você começará a receber interessados qualificados no seu WhatsApp.</p>
+                <div style="margin-top: 40px;">
+                    <a href="index.html" class="btn-secondary">Voltar para o início</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/imoveis.js"></script>
+    <script>
+        // Multi-Step Logic
+        let currentStep = 1;
+        const totalSteps = 4;
+
+        function nextStep(step) {
+            // Basic validation for current step
+            const currentSection = document.getElementById(`step${currentStep}`);
+            const inputs = currentSection.querySelectorAll('input, select, textarea');
+            let valid = true;
+            
+            inputs.forEach(input => {
+                if(input.required && !input.value) {
+                    input.style.borderColor = '#ef4444';
+                    valid = false;
+                } else {
+                    input.style.borderColor = 'var(--border)';
+                }
+            });
+
+            if (!valid && step > currentStep) return;
+
+            // Switch steps
+            document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step${step}`).classList.add('active');
+            
+            // Update progress items
+            document.querySelectorAll('.step-item').forEach(item => {
+                const s = parseInt(item.dataset.step);
+                item.classList.remove('active', 'completed');
+                if (s === step) item.classList.add('active');
+                if (s < step) item.classList.add('completed');
+            });
+
+            currentStep = step;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mask for Phone
+        const phoneInput = document.getElementById('ownerPhone');
+        phoneInput.addEventListener('input', (e) => {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+
+        // Mask for Currency
+        const rentInput = document.getElementById('rentValue');
+        rentInput.addEventListener('input', (e) => {
+            let value = e.target.value.replace(/\D/g, "");
+            value = (value / 100).toLocaleString("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+            });
+            e.target.value = value;
+        });
+
+        // Photo Upload System
+        const fileInput = document.getElementById('fileInput');
+        const previewGrid = document.getElementById('previewGrid');
+        const countSpan = document.getElementById('currentPhotoCount');
+        let uploadedFiles = [];
+
+        fileInput.addEventListener('change', (e) => {
+            const files = Array.from(e.target.files);
+            
+            if (uploadedFiles.length + files.length > 10) {
+                alert('O limite máximo é de 10 fotos.');
+                return;
+            }
+
+            files.forEach(file => {
+                if (file.size > 5 * 1024 * 1024) {
+                    alert(`A foto ${file.name} é muito grande. Limite de 5MB.`);
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const item = document.createElement('div');
+                    item.className = 'preview-item';
+                    const fileId = Date.now() + Math.random();
+                    
+                    item.innerHTML = `
+                        <img src="${event.target.result}">
+                        <button type="button" class="remove-photo" onclick="removePhoto('${fileId}')">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    `;
+                    item.dataset.id = fileId;
+                    previewGrid.appendChild(item);
+                    
+                    uploadedFiles.push({ id: fileId, file: file, base64: event.target.result });
+                    updateCounter();
+                };
+                reader.readAsDataURL(file);
+            });
+        });
+
+        function removePhoto(id) {
+            uploadedFiles = uploadedFiles.filter(f => f.id != id);
+            const item = previewGrid.querySelector(`[data-id="${id}"]`);
+            if (item) item.remove();
+            updateCounter();
+        }
+
+        function updateCounter() {
+            countSpan.innerText = uploadedFiles.length;
+        }
+
+        // Form Submission
+        document.getElementById('propertyForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const btn = document.getElementById('submitBtn');
+            btn.classList.add('btn-loading');
+            btn.disabled = true;
+
+            // Prepare Data for API (Future)
+            const formData = new FormData();
+            formData.append('ownerName', document.getElementById('ownerName').value);
+            formData.append('ownerPhone', document.getElementById('ownerPhone').value);
+            formData.append('type', document.getElementById('type').value);
+            formData.append('neighborhood', document.getElementById('neighborhood').value);
+            formData.append('rentValue', document.getElementById('rentValue').value);
+            formData.append('description', document.getElementById('description').value);
+            
+            uploadedFiles.forEach((fileObj, index) => {
+                formData.append(`image_${index}`, fileObj.file);
+            });
+
+            // For now, save to localStorage (Mocking)
+            const propertyData = {
+                ownerName: document.getElementById('ownerName').value,
+                ownerPhone: document.getElementById('ownerPhone').value,
+                type: document.getElementById('type').value,
+                neighborhood: document.getElementById('neighborhood').value,
+                rentValue: document.getElementById('rentValue').value.replace('R$\xa0', '').replace('R$ ', ''),
+                description: document.getElementById('description').value,
+                photos: uploadedFiles.map(f => f.base64).slice(0, 2) // Limit Base64 storage to avoid quota error
+            };
+
+            // Simulate Network Delay
+            setTimeout(() => {
+                AlugaVale.registerProperty(propertyData);
+                
+                document.getElementById('propertyForm').classList.add('hidden');
+                document.getElementById('formHeader').classList.add('hidden');
+                document.querySelector('.form-steps').classList.add('hidden');
+                document.getElementById('successMessage').classList.remove('hidden');
+                
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 1800);
+        });
+    </script>
+</body>
+
+</html>

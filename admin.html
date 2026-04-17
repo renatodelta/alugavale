@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Moderação | AlugaVale</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- UI Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/imoveis.css">
+</head>
+
+<body style="background: #f8fafc;">
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                Aluga<span>Vale</span> <span style="font-size: 0.8rem; background: var(--primary); color: white; padding: 2px 8px; border-radius: 4px; margin-left: 10px;">ADMIN</span>
+            </a>
+            <div class="nav-links">
+                <a href="imoveis.html" target="_blank">Ver Site Público</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container" style="padding: 60px 24px;">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+            <div>
+                <h1>Moderação de Imóveis</h1>
+                <p style="color: var(--text-muted);">Aprove ou rejeite novos cadastramentos de proprietários.</p>
+            </div>
+            <button onclick="location.reload()" class="btn-secondary" style="padding: 10px 20px;">
+                <i class="fa-solid fa-rotate"></i> Atualizar
+            </button>
+        </header>
+
+        <div style="background: white; border-radius: var(--radius-lg); border: 1px solid var(--border); overflow: hidden;">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Criação</th>
+                        <th>Proprietário</th>
+                        <th>Imóvel</th>
+                        <th>Valor</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="adminTableBody">
+                    <!-- Loaded dynamically -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="js/imoveis.js"></script>
+    <script>
+        function loadAdminProperties() {
+            const properties = AlugaVale.getProperties();
+            const container = document.getElementById('adminTableBody');
+            container.innerHTML = '';
+
+            properties.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+            properties.forEach(p => {
+                const date = new Date(p.createdAt).toLocaleDateString('pt-BR');
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${date}</td>
+                    <td>
+                        <strong>${p.ownerName}</strong><br>
+                        <small>${p.ownerPhone}</small>
+                    </td>
+                    <td>
+                        <strong>${p.type}</strong><br>
+                        <small>${p.neighborhood}</small>
+                    </td>
+                    <td>R$ ${p.rentValue}</td>
+                    <td><span class="status-badge status-${p.status}">${p.status === 'pending' ? 'Pendente' : p.status === 'approved' ? 'Aprovado' : 'Rejeitado'}</span></td>
+                    <td>
+                        ${p.status === 'pending' ? `
+                            <button onclick="approve('${p.id}')" class="btn-action btn-approve">Aprovar</button>
+                            <button onclick="reject('${p.id}')" class="btn-action btn-reject">Rejeitar</button>
+                        ` : `
+                            <small style="color: var(--text-muted);">Processado</small>
+                        `}
+                    </td>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function approve(id) {
+            if(confirm('Deseja aprovar este imóvel para aparecer publicamente?')) {
+                AlugaVale.updatePropertyStatus(id, 'approved');
+                loadAdminProperties();
+            }
+        }
+
+        function reject(id) {
+            if(confirm('Deseja rejeitar este imóvel?')) {
+                AlugaVale.updatePropertyStatus(id, 'rejected');
+                loadAdminProperties();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', loadAdminProperties);
+    </script>
+</body>
+
+</html>

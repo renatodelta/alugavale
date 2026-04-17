@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imóveis Disponíveis | AlugaVale</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- UI Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/imoveis.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                Aluga<span>Vale</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#bairros">Bairros</a>
+                <a href="imoveis.html" class="active">Imóveis</a>
+                <a href="index.html#sobre">Sobre</a>
+            </div>
+            <div class="nav-actions">
+                <a href="cadastrar-imovel.html" class="btn-secondary" style="margin-right: 10px; padding: 10px 20px;">
+                    Anunciar Imóvel
+                </a>
+                <a href="https://wa.me/5512992400019" target="_blank" class="btn-cta">
+                    💬 Falar com Fabiana
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <header style="padding: 80px 0 40px; text-align: center; background: var(--bg-gray);">
+        <div class="container">
+            <h1>Imóveis em Destaque</h1>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 10px auto;">Encontre o imóvel ideal em Taubaté e Tremembé com a curadoria da AlugaVale.</p>
+        </div>
+    </header>
+
+    <main class="container" style="padding: 60px 24px;">
+        <div id="propertiesGrid" class="property-grid">
+            <!-- Loaded dynamically -->
+        </div>
+
+        <div id="emptyState" class="hidden" style="text-align: center; padding: 80px 0;">
+            <i class="fa-solid fa-house-chimney-crack" style="font-size: 60px; color: var(--border); margin-bottom: 20px;"></i>
+            <h2>Nenhum imóvel disponível no momento</h2>
+            <p style="color: var(--text-muted); margin-top: 10px;">Seja o primeiro a anunciar! Clique no botão "Anunciar Imóvel" acima.</p>
+        </div>
+    </main>
+
+    <footer class="footer-professional">
+        <div class="container footer-grid">
+            <!-- Footer content consistent with index.html -->
+            <div class="footer-info">
+                <div class="logo">Aluga<span>Vale</span></div>
+                <p>Sua central de decisão imobiliária em Taubaté e região.</p>
+            </div>
+            <div class="footer-nav">
+                <h4>Links Úteis</h4>
+                <a href="index.html">Início</a>
+                <a href="cadastrar-imovel.html">Anunciar Imóvel</a>
+            </div>
+            <div class="footer-contact">
+                <h4>Contato</h4>
+                <p><i class="fa-solid fa-phone"></i> (12) 99240-0019</p>
+                <p><i class="fa-solid fa-envelope"></i> contato@alugavale.com.br</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 AlugaVale. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/imoveis.js"></script>
+    <script>
+        function loadApprovedProperties() {
+            const properties = AlugaVale.getApprovedProperties();
+            const container = document.getElementById('propertiesGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (properties.length === 0) {
+                emptyState.classList.remove('hidden');
+                container.classList.add('hidden');
+                return;
+            }
+
+            container.innerHTML = '';
+            properties.forEach(p => {
+                const card = document.createElement('div');
+                card.className = 'property-card';
+                card.innerHTML = `
+                    <div class="property-thumb">
+                        <img src="${p.photos[0]}" alt="${p.type}">
+                        <div class="property-badge">${p.type}</div>
+                    </div>
+                    <div class="property-info">
+                        <div class="property-type">${p.type}</div>
+                        <div class="property-neighborhood">${p.neighborhood}</div>
+                        <div class="property-price">R$ ${p.rentValue} <span>/mês</span></div>
+                        <a href="detalhe-imovel.html?id=${p.id}" class="btn-primary" style="width: 100%; justify-content: center;">Ver detalhes</a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadApprovedProperties);
+    </script>
+</body>
+
+</html>

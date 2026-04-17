@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Imóvel | AlugaVale</title>
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- UI Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/imoveis.css">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                Aluga<span>Vale</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#bairros">Bairros</a>
+                <a href="imoveis.html">Imóveis</a>
+                <a href="index.html#sobre">Sobre</a>
+            </div>
+            <div class="nav-actions">
+                <a href="https://wa.me/5512992400019" target="_blank" class="btn-cta">
+                    💬 Falar com Fabiana
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div id="propertyDetail" class="detail-layout">
+            <!-- Loaded dynamically -->
+        </div>
+    </main>
+
+    <!-- Modal Analysis -->
+    <div id="analysisModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div id="formSection">
+                <h2 style="margin-bottom: 20px;">Pré-análise Instantânea</h2>
+                <p style="color: var(--text-muted); margin-bottom: 30px;">Preencha os dados abaixo para saber se você tem o perfil para este imóvel.</p>
+                <form id="analysisForm">
+                    <div class="form-group">
+                        <label for="userName">Nome Completo</label>
+                        <input type="text" id="userName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userCPF">CPF</label>
+                        <input type="text" id="userCPF" class="form-control" placeholder="000.000.000-00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="userIncome">Renda Mensal Comprovada (R$)</label>
+                        <input type="number" id="userIncome" class="form-control" placeholder="Ex: 8000" required>
+                    </div>
+                    <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 20px;">
+                        Analisar meu perfil agora
+                    </button>
+                </form>
+            </div>
+
+            <div id="resultSection" class="hidden analysis-result">
+                <div id="resultIcon" class="result-icon"></div>
+                <h2 id="resultTitle"></h2>
+                <p id="resultMessage" style="color: var(--text-muted); margin: 15px 0 30px;"></p>
+                <a id="whatsappBtn" href="#" target="_blank" class="btn-primary" style="width: 100%; justify-content: center; background: #25D366;">
+                    <i class="fa-brands fa-whatsapp"></i> Falar com especialista
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/imoveis.js"></script>
+    <script>
+        let currentProperty = null;
+
+        function loadPropertyDetail() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+            const property = AlugaVale.getPropertyById(id);
+            
+            if (!property) {
+                document.getElementById('propertyDetail').innerHTML = '<h2>Imóvel não encontrado.</h2>';
+                return;
+            }
+
+            currentProperty = property;
+            document.title = `${property.type} em ${property.neighborhood} | AlugaVale`;
+
+            const container = document.getElementById('propertyDetail');
+            container.innerHTML = `
+                <div class="detail-content">
+                    <div class="detail-gallery">
+                        <img src="${property.photos[0]}" alt="${property.type}">
+                    </div>
+                    <div class="detail-info" style="margin-top: 40px;">
+                        <span class="badge">${property.type}</span>
+                        <h1>${property.type} em ${property.neighborhood}</h1>
+                        <p class="detail-description">${property.description}</p>
+                        
+                        <div style="background: var(--bg-gray); padding: 30px; border-radius: var(--radius-md); margin-top: 40px;">
+                            <h3 style="margin-bottom: 20px;">Características Principais</h3>
+                            <ul style="list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                <li><i class="fa-solid fa-check color-accent"></i> Bairro: ${property.neighborhood}</li>
+                                <li><i class="fa-solid fa-check color-accent"></i> Tipo: ${property.type}</li>
+                                <li><i class="fa-solid fa-check color-accent"></i> Valor: R$ ${property.rentValue}/mês</li>
+                                <li><i class="fa-solid fa-check color-accent"></i> Seguro Fiança Disponível</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <aside class="detail-sidebar">
+                    <div class="detail-price">R$ ${property.rentValue} <span>/mês</span></div>
+                    <p style="color: var(--text-muted); margin-bottom: 30px; font-size: 0.9rem;">Pacote de aluguel sujeito a encargos (IPTU/Condomínio).</p>
+                    
+                    <button onclick="openModal()" class="btn-primary" style="width: 100%; justify-content: center; margin-bottom: 15px; font-size: 1.1rem; padding: 20px;">
+                        Ver se posso alugar este imóvel
+                    </button>
+                    <a href="https://wa.me/5512992400019?text=Gostaria de agendar uma visita para o imóvel em ${property.neighborhood}" target="_blank" class="btn-secondary" style="width: 100%; justify-content: center;">
+                        Agendar Visita
+                    </a>
+                </aside>
+            `;
+        }
+
+        function openModal() {
+            document.getElementById('analysisModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('analysisModal').classList.remove('active');
+        }
+
+        document.getElementById('analysisForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('userName').value;
+            const cpf = document.getElementById('userCPF').value;
+            const income = parseFloat(document.getElementById('userIncome').value);
+            
+            const result = AlugaVale.analyzeCredit(name, cpf, income, currentProperty.rentValue);
+            
+            // UI Update
+            document.getElementById('formSection').classList.add('hidden');
+            document.getElementById('resultSection').classList.remove('hidden');
+            
+            const iconDiv = document.getElementById('resultIcon');
+            const titleH2 = document.getElementById('resultTitle');
+            const messageP = document.getElementById('resultMessage');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            
+            iconDiv.className = 'result-icon';
+            if (result.status === 'approved') {
+                iconDiv.innerHTML = '<i class="fa-solid fa-circle-check"></i>';
+                iconDiv.classList.add('result-approved');
+            } else if (result.status === 'analysis') {
+                iconDiv.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i>';
+                iconDiv.classList.add('result-analysis');
+            } else {
+                iconDiv.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+                iconDiv.classList.add('result-denied');
+            }
+            
+            titleH2.innerText = result.title;
+            messageP.innerText = result.message;
+            
+            // WhatsApp Link
+            const waMessage = encodeURIComponent(`Olá Fabiana! Acabei de fazer uma pré-análise no site.\n\nNome: ${name}\nImóvel: ${currentProperty.type} em ${currentProperty.neighborhood}\nResultado: ${result.title}`);
+            whatsappBtn.href = `https://wa.me/5512992400019?text=${waMessage}`;
+        });
+
+        document.addEventListener('DOMContentLoaded', loadPropertyDetail);
+    </script>
+</body>
+
+</html>
