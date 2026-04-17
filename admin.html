@@ -88,11 +88,14 @@
                     <td><span class="status-badge status-${p.status}">${p.status === 'pending' ? 'Pendente' : p.status === 'approved' ? 'Aprovado' : 'Rejeitado'}</span></td>
                     <td>
                         ${p.status === 'pending' ? `
-                            <button onclick="approve('${p.id}')" class="btn-action btn-approve">Aprovar</button>
-                            <button onclick="reject('${p.id}')" class="btn-action btn-reject">Rejeitar</button>
+                            <button onclick="approve('${p.id}')" class="btn-action btn-approve" title="Aprovar">Aprovar</button>
+                            <button onclick="reject('${p.id}')" class="btn-action btn-reject" title="Rejeitar">Rejeitar</button>
                         ` : `
-                            <small style="color: var(--text-muted);">Processado</small>
+                            <small style="color: var(--text-muted);">${p.status === 'approved' ? 'Aprovado' : 'Rejeitado'}</small>
                         `}
+                        <button onclick="deleteItem('${p.id}')" class="btn-action" style="background: none; color: #ef4444; border: 1px solid #ef4444; padding: 4px 8px; margin-left:10px;" title="Excluir Permanentemente">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
                     </td>
                 `;
                 container.appendChild(row);
@@ -136,6 +139,18 @@
                     alert('Erro ao rejeitar. Tente novamente.');
                     btn.innerText = originalText;
                     btn.disabled = false;
+                }
+            }
+        }
+
+        async function deleteItem(id) {
+            if(confirm('ATENÇÃO: Deseja excluir este imóvel PERMANENTEMENTE? Esta ação não pode ser desfeita.')) {
+                const success = await AlugaVale.deleteProperty(id);
+                if (success) {
+                    alert('Imóvel excluído com sucesso.');
+                    setTimeout(loadAdminProperties, 2000);
+                } else {
+                    alert('Erro ao excluir. Tente novamente.');
                 }
             }
         }

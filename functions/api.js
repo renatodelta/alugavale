@@ -38,6 +38,8 @@ export async function onRequest(context) {
         }
         return p;
       });
+    } else if (input.action === 'delete') {
+      properties = properties.filter(p => p.id !== input.id);
     } else {
       const newProperty = {
         ...input,

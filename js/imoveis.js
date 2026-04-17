@@ -93,5 +93,18 @@ window.AlugaVale = {
     },
     registerProperty,
     updatePropertyStatus,
+    deleteProperty: async (id) => {
+        try {
+            await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'delete', id })
+            });
+            return true;
+        } catch (error) {
+            console.error('Failed to delete via API:', error);
+            return false;
+        }
+    },
     analyzeCredit
 };
